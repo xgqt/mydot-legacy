@@ -3,7 +3,7 @@
 #+CREATOR: gnugnat
 #+LANGUAGE: en
 #+ATTR_HTML: :style margin-left: auto; margin-right: auto;
-[[./.Larry_Cow.png]]
+[[./Larry_Cow.png]]
 
 * Background
 worked on this since my Gentoo's first installation, because of this this repo contains a lot of gentoo specyfic aliases and tools
