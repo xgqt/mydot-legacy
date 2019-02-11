@@ -24,6 +24,7 @@ alias c='cat'
 alias n='nano'
 alias v='vim'
 alias e='emacs -nw'							# emacs in terminal
+alias open='xdg-open'
 # -- authorization --
 alias rp='sudo '
 # -- searching --

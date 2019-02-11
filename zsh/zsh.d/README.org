@@ -6,4 +6,4 @@
 - =zsh-autosuggestions=
 	https://github.com/zsh-users/zsh-autosuggestions
 * Themes
-[[~/zsh.d/showcase.jpg]]
+[[./showcase.jpg]]
