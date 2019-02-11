@@ -1,0 +1,51 @@
+# What gets stowed
+.
+├── bash
+│   └── .bashrc			links: 📃 file 📃
+│
+├── compton
+│   └── .config
+│       └── compton.conf	links: 📃 file 📃
+│
+├── conky
+│   ├── conky.d			links: 📁 dir 📁
+│   └── .conkyrc		links: 📃 file 📃
+│
+├── emacs
+│   └── .emacs.d
+│       ├── img			links: 📁 dir 📁
+│       ├── ini2.org		links: 📃 file 📃
+│       └── init.el		links: 📃 file 📃
+│
+├── nano
+│   └── .nanorc			links: 📃 file 📃
+│
+├── neofetch
+│   └── .config
+│       └── neofetch		links: 📁 dir 📁
+│
+├── newsboat
+│   └── .newsboat
+│       ├── config		links: 📃 file 📃
+│       └── urls		links: 📃 file 📃
+│
+├── scripts
+│   └── scripts			links: 📁 dir 📁
+│
+├── terminator
+│   └── .config
+│       └── terminator		links: 📁 dir 📁 
+│
+├── themes
+│   └── .themes
+│	└── Alien-Cyan-Mod	links: 📁 dir 📁
+│
+├── tmux
+│   └── .tmux.conf		links: 📃 file 📃
+│
+├── vim
+│   └── .vimrc			links: 📃 file 📃
+│
+└── zsh
+    ├── zsh.d			links: 📁 dir 📁
+    └── .zshrc			links: 📃 file 📃

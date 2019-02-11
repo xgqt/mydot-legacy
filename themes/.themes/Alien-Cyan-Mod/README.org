@@ -1,0 +1,4 @@
+#+STARTUP: showall
+* Links
+** Alien-Cyan & Alien-Red original:
+[[https://www.xfce-look.org/p/1016054/]]

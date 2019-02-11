@@ -1,0 +1,102 @@
+conky.config = {
+	background = false,
+	font = 'Monospace:size=10',
+	use_xft = true,
+	xftalpha = 0.9,
+	update_interval = 3.0,
+	total_run_times = 0,
+	own_window = true,
+	own_window_type = 'normal',
+	own_window_transparent = false,
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+	double_buffer = true,
+	minimum_width = 200,
+	maximum_width = 200,
+	minimum_height = 700,
+	draw_shades = true,
+	draw_outline = false,
+	draw_borders = false,
+	draw_graph_borders = false,
+	default_color = '#cccccc',
+	default_shade_color = 'black',
+	default_outline_color = 'green',
+	alignment = 'top_right',
+	gap_x = 5,
+	gap_y = 60,
+	no_buffers = true,
+	uppercase = false,
+	cpu_avg_samples = 4,
+	override_utf8_locale = false,
+	uppercase = false,
+	own_window_argb_value = 0,
+	own_window_argb_visual = true,
+	own_window_colour = '#000000',
+};
+
+conky.text = [[
+${color #2aa198}${alignc}${exec uname -n} - ${exec whoami}
+${alignc}${exec uname -r}$color${color #586e75}
+${alignc}${exec uptime -p}
+${alignc}${exec date "+%T - %D"}$color
+
+${color #eee8d5}SYSTEM:${color #5b6dad}${hr 2}
+${color #b58900}CPU: ${alignr}${freq} MHz${color #b58900}
+Core 1 (${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon0/temp2_input | cut -c-2 })${alignr}${cpu cpu1}%
+${cpubar 4 cpu1}
+Core 2 (${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon0/temp3_input | cut -c-2 })${alignr}${cpu cpu2}%
+${cpubar 4 cpu2}
+Core 3 (${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon0/temp4_input | cut -c-2 })${alignr}${cpu cpu3}%
+${cpubar 4 cpu3}
+Core 4 (${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon0/temp5_input | cut -c-2 })${alignr}${cpu cpu4}%
+${cpubar 4 cpu4}$color${color #93a1a1}
+${top name 1}$alignr${top cpu 1}
+${top name 2}$alignr${top cpu 2}
+${top name 3}$alignr${top cpu 3}${color #657b83}
+${top name 4}$alignr${top cpu 4}
+${top name 5}$alignr${top cpu 5}
+${top name 6}$alignr${top cpu 6}$color
+
+${color #859900}Load: ${alignr}${exec cat /proc/loadavg | cut -d" " -f 1-3}$color
+# now, 5 min ago, 15 min ago
+${color #2aa198}Processes: ${alignr}${exec cat /proc/loadavg | cut -d" " -f 4}$color
+# Running / Total
+
+${color #b58900}RAM:${alignr}${color #b58900}$mem ($memperc%)
+${membar 5}$color ${color #93a1a1}
+${top_mem name 1}$alignr${top_mem mem 1}
+${top_mem name 2}$alignr${top_mem mem 2}
+${top_mem name 3}$alignr${top_mem mem 3}${color #657b83}
+${top_mem name 4}$alignr${top_mem mem 4}
+${top_mem name 5}$alignr${top_mem mem 5}
+${top_mem name 6}$alignr${top_mem mem 6}$color
+
+${color #eee8d5}NET:${color #5b6dad}${hr 2}$color
+${color #b58900} ${alignr}${addr eno1}
+# it may not be safe to use the following:
+#${color #aa4481}WAN IP: $color${color #aa9644} ${alignr}${exec curl -s https://ipinfo.io/ip}$color
+${color #775555}Do: ${color #2c97c9}${downspeed eno1}/s${alignr}${color #557755}Up: ${color #2c97c9}${upspeed eno1}/s$color
+${downspeedgraph eno1 32,95 000000 775555} ${upspeedgraph eno1 32,95 000000 557755}
+${color #eee8d5}PORTAGE:${color #5b6dad}${hr 2}$color
+${color #93a1a1}Sync:${alignr}${color #6c71c4}${exec printf '%(%A %H:%M)T\n' $(grep 'Sync completed' /var/log/emerge.log | sed -n '$ s/:.*//p')
+}
+${color #93a1a1}Status:${alignr}${color #6c71c4}${execi 30 ~/conky.d/emerge-status.sh}
+${color #93a1a1}Progress: ${color #6c71c4}${execibar 30 ~/conky.d/emerge-progress.sh}
+${color #93a1a1}Pkg:${alignr}${color #6c71c4}${execi 30 ~/conky.d/emerge-current.sh}
+${color #93a1a1}World:${alignr}${color #6c71c4}${exec cat /var/lib/portage/world | wc -l}/${exec ls -d /var/db/pkg/*/* | cut -f5- -d/ | wc -l}
+# /var/db/pkg/ is the local repo of installed packages
+
+${color #eee8d5}FILESYSTEMS:${color #5b6dad}${hr 2}$color
+${color #93a1a1}${fs_used /}/${fs_size /} ${color #268bd2}/ ${color #5b6dad}${fs_bar /}$color
+${color #93a1a1}${fs_used /boot}/${fs_size /boot} ${color #268bd2}b ${color #5b6dad}${fs_bar /boot}
+${color #93a1a1}${fs_used /500DISK/500MUSIC}/${fs_size /500DISK/500MUSIC} ${color #268bd2}m ${color #5b6dad}${fs_bar /500DISK/500MUSIC}$color
+${color #93a1a1}${fs_used /500DISK/500DATA}/${fs_size /500DISK/500DATA} ${color #268bd2}d ${color #5b6dad}${fs_bar /500DISK/500DATA}$color
+
+${color #eee8d5}GTX:${color #5b6dad}${hr 2}$color
+${color #93a1a1}GPU Temp: ${alignr}${color #6c71c4}${nvidia temp} C
+${color #93a1a1}Fan Speed: ${alignr}${color #6c71c4}${execi 5 nvidia-settings -q [fan:0]/GPUCurrentFanSpeed -t} %
+${color #93a1a1}GPU Clock: ${alignr}${color #6c71c4}${nvidia gpufreq} MHz
+${color #93a1a1}Mem Clock: ${alignr}${color #6c71c4}${nvidia memfreq} MHz
+${color #93a1a1}Mem Used: ${alignr}${color #6c71c4}${execi 5 nvidia-settings -q [gpu:0]/UsedDedicatedGPUMemory -t} MiB
+#${exec nvidia-settings -q [gpu:0]/TotalDedicatedGPUMemory -t}
+
+]]

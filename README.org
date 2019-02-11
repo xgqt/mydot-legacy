@@ -1,0 +1,35 @@
+#+STARTUP: showall inlineimages
+#+TITLE: GNU/Gnat's dotfiles
+#+CREATOR: gnugnat
+#+LANGUAGE: en
+#+ATTR_HTML: :style margin-left: auto; margin-right: auto;
+[[~/mydot/emacs/.emacs.d/img/Larry_Cow.png]]
+
+* Background
+worked on this since my Gentoo's first installation, because of this this repo contains a lot of gentoo specyfic aliases and tools
+* Legal Disclaimer
+** what I did not write:
+- some scripts where the author is mentioned ( duh :) )
+- compton config - not mine, but modified
+- zsh plugins ( git-prompt.sh , zsh-syntax-highlighting & zsh-autosuggestions )
+* Howto
+** Installaton
+- git clone the repo to ~/mydot
+  =git clone https://github.com/gnugnat/ ~/mydot=
+- cd to mydot
+- run =./stowdot=
+** Uninstallation
+- run =./stowdot remove=
+* What is in Here
+- =bash= -	 bash shell configuration
+- =compton= - 	 compton compositor configuration
+- =conky= - 	 conky system monitor configuration
+- =emacs= - 	 emacs configuration files: ini.el & ini2.org
+- =nano= -	 nano editor configuration
+- =neofetch= -	 neofetch configuration
+- =scripts= -	 whole scripts folder
+- =terminator= - terminator termianal emulator configurtion
+- =themes= -	 my take on some themes
+- =tmux= -	 tmux terminal multiplexer comfiguration
+- =vim= -	 vim text editor simple configuration
+- =zsh= -	 zsh configuration, themes & plugins 

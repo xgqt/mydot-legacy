@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# ----- Checks -----
+# --- check for stow
+if [[ ! -x /usr/bin/stow ]]; then
+    echo "$(tput bold)There is no stow on the sytem! Exiting.$(tput sgr0)"
+    exit 1
+fi
+
+mddir=$HOME/mydot
+
+# --- check for mddir ( ~/mydot ) ---
+if [[ ! -x $mddir ]]; then
+    echo "$(tput bold)The location of the scrip is wrong! Exiting.$(tput sgr0)"
+    exit 1
+fi
+
+# --- check needed directories ---
+for chkdir in "$HOME/.config" "$HOME/.emacs.d" "$HOME/.themes"
+do
+    if [[ ! -x $chkdir ]]; then
+	mkdir $chkdir
+	echo "$chkdir created"
+    else
+	echo "$chkdir exists, good"
+    fi
+done
+
+# ----- Hide -----
+# stow ignores hidden files (and directories)
+# first make the files that should be visible hidden
+# and then make them visible again
+# --- hide all files ---
+cd $mddir
+for file in *; do
+    if [[ -f $file ]]; then
+	mv "$file" ".$file"
+    fi
+done
+
+# ----- Stow or Unstow -----
+if [[ "$1" = "remove" ]]; then
+   # unlink
+   stow -D -d $mddir * -v
+   if [[ "$?" = '0' ]]; then
+       echo "$(tput bold)The configuration removed successfully!$(tput sgr0)"
+   fi
+else
+   # link
+   stow -d $mddir * -v
+   if [[ "$?" = '0' ]]; then
+       echo "$(tput bold)The configuration transferred successfully!$(tput sgr0)"
+   fi    
+fi
+
+# ----- Show -----
+# show
+cd $mddir
+for file in * .[^.]*; do
+    if [[ -f $file ]]; then
+	mv $file $(echo $file | cut -d"." -f2-)
+    fi
+done
