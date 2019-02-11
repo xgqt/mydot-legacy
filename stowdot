@@ -1,16 +1,16 @@
 #!/bin/bash
 
 # ----- Checks -----
-# --- check for stow
+# --- check for stow ---
 if [[ ! -x /usr/bin/stow ]]; then
     echo "$(tput bold)There is no stow on the sytem! Exiting.$(tput sgr0)"
     exit 1
 fi
 
-mddir=$HOME/mydot
+mydir=$HOME/mydot
 
-# --- check for mddir ( ~/mydot ) ---
-if [[ ! -x $mddir ]]; then
+# --- check for mydir ( ~/mydot ) ---
+if [[ ! -x $mydir ]]; then
     echo "$(tput bold)The location of the scrip is wrong! Exiting.$(tput sgr0)"
     exit 1
 fi
@@ -26,38 +26,36 @@ do
     fi
 done
 
+mytmp=/tmp/mytmp
+mkdir $mytmp
+
 # ----- Hide -----
-# stow ignores hidden files (and directories)
-# first make the files that should be visible hidden
-# and then make them visible again
-# --- hide all files ---
-cd $mddir
-for file in *; do
+for file in "$mydir/README.org" "$mydir/tree" "$mydir/Larry_Cow.png" "$mydir/stowdot"; do
     if [[ -f $file ]]; then
-	mv "$file" ".$file"
+	mv "$file" "$mytmp/"
     fi
 done
 
 # ----- Stow or Unstow -----
 if [[ "$1" = "remove" ]]; then
    # unlink
-   stow -D -d $mddir * -v
+   stow -D -d $mydir * -v
    if [[ "$?" = '0' ]]; then
        echo "$(tput bold)The configuration removed successfully!$(tput sgr0)"
    fi
 else
    # link
-   stow -d $mddir * -v
+   stow -d $mydir * -v
    if [[ "$?" = '0' ]]; then
        echo "$(tput bold)The configuration transferred successfully!$(tput sgr0)"
    fi    
 fi
 
 # ----- Show -----
-# show
-cd $mddir
-for file in * .[^.]*; do
+for file in "$mytmp/README.org" "$mytmp/tree" "$mytmp/Larry_Cow.png" "$mytmp/stowdot"; do
     if [[ -f $file ]]; then
-	mv $file $(echo $file | cut -d"." -f2-)
+	mv "$file" "$mydir/"
     fi
 done
+
+rm -d /tmp/mytmp
