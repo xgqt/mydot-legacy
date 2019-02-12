@@ -73,7 +73,7 @@
   ;; window size in de/wm - minimalized
   (when window-system
   ;;  (set-frame-position (selected-frame) 50 40)
-    (set-frame-size (selected-frame) 100 50))
+    (set-frame-size (selected-frame) 88 45))
 #+END_SRC
 ** Transparency
 #+BEGIN_SRC emacs-lisp
