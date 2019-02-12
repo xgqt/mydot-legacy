@@ -30,7 +30,7 @@ mytmp=/tmp/mytmp
 mkdir $mytmp
 
 # ----- Hide -----
-for file in "$mydir/README.org" "$mydir/tree" "$mydir/Larry_Cow.png" "$mydir/stowdot"; do
+for file in $mydir/*; do
     if [[ -f $file ]]; then
 	mv "$file" "$mytmp/"
     fi
@@ -52,7 +52,7 @@ else
 fi
 
 # ----- Show -----
-for file in "$mytmp/README.org" "$mytmp/tree" "$mytmp/Larry_Cow.png" "$mytmp/stowdot"; do
+for file in $mytmp/*; do
     if [[ -f $file ]]; then
 	mv "$file" "$mydir/"
     fi
