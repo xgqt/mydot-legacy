@@ -16,8 +16,7 @@ if [[ ! -x $mydir ]]; then
 fi
 
 # --- check needed directories ---
-for chkdir in "$HOME/.config" "$HOME/.emacs.d" "$HOME/.themes"
-do
+for chkdir in "$HOME/.config" "$HOME/.emacs.d" "$HOME/.themes"; do
     if [[ ! -x $chkdir ]]; then
 	mkdir $chkdir
 	echo "$chkdir created"
