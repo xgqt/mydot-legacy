@@ -33,7 +33,6 @@ zstyle ':completion:*' menu select
 setopt correctall
 
 # --- Prompt Init ---
-
 autoload -U promptinit
 promptinit
 #prompt gentoo				# use when you do not have your own prompt theme

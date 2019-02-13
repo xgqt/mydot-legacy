@@ -57,6 +57,7 @@ alias gcommit='git commit'
 alias gpush='git push'
 alias gpull='git pull'
 alias gstat='git status'
+alias gdiff='git diff'
 
 # --- fetch ---
 alias neo='neofetch \
