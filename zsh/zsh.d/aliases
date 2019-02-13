@@ -51,6 +51,13 @@ alias rem='sudo emerge -avc'                                            # remove
 alias chu='sudo emerge -avNUD @world'                                   # run this after changing USE [--newuse, -N] [--changed-use, -U] [--deep, -D]
 alias ewup='sudo eix-sync && sudo eix-remote update && sudo emerge -avuND @world' 		        # world update using eix to sync
 
+# --- Git ---
+alias gadd='git add .'
+alias gcommit='git commit'
+alias gpush='git push'
+alias gpull='git pull'
+alias gstat='git status'
+
 # --- fetch ---
 alias neo='neofetch \
 --gtk3 off \
