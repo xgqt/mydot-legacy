@@ -38,7 +38,7 @@ promptinit
 #prompt gentoo				# use when you do not have your own prompt theme
 
 # --- History ---
-HISTFILE=$HOME/zsh_history		# previously it was zsh.d ( $MYZSHDIR )
+HISTFILE=$HOME/.zsh_history		# previously it was zsh.d ( $MYZSHDIR )
 HISTSIZE=3000
 SAVEHIST=$HISTSIZE			# necessary to save history
 setopt hist_ignore_all_dups		# ignore duplicates
