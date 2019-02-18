@@ -25,17 +25,21 @@
 (add-hook 'emacs-startup-hook 'startup/revert-file-name-handler-alist)
 (add-hook 'emacs-startup-hook 'startup/reset-gc)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Code
 
-;; packages from melpa
+;; package archives
 (require 'package)
 (setq package-enable-at-startup nil)
 (setq package-archives '(("ELPA"  . "http://tromey.com/elpa/")
 			 ("gnu"   . "http://elpa.gnu.org/packages/")
-			 ("melpa" . "https://melpa.org/packages/")
+			 ;;("melpa" . "https://melpa.org/packages/")
+			 ;;("melpa-stable" . "http://stable.melpa.org/packages/")
 			 ("org"   . "https://orgmode.org/elpa/")))
+;; fixes some package issues
+(add-to-list 'package-archives
+         '("melpa-stable" . "http://stable.melpa.org/packages/"))
+(add-to-list 'package-archives
+         '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
-
 
 ;; install use-package
 (unless (package-installed-p 'use-package)
@@ -63,7 +67,7 @@
  '(inhibit-default-init t)
  '(inhibit-startup-buffer-menu t)
  '(inhibit-startup-screen t)
- '(package-selected-packages (quote (use-package)))
+ '(package-selected-packages (quote (magit use-package)))
  '(pdf-view-midnight-colors (quote ("#b2b2b2" . "#292b2e"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
