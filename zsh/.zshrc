@@ -2,10 +2,10 @@
 
 # ~/.zshrc
 
-#          _              
-#  _______| |__  _ __ ___ 
+#          _
+#  _______| |__  _ __ ___
 # |_  / __| '_ \| '__/ __|
-#  / /\__ \ | | | | | (__ 
+#  / /\__ \ | | | | | (__
 # /___|___/_| |_|_|  \___|
 
 # ----- setting the path -----
@@ -96,9 +96,9 @@ fi
 
 # --- some fun stuff ---
 # -- larrysay --
-if [ -x /usr/bin/cowsay -a -x /usr/bin/fortune -a -x /usr/bin/lolcat -a -x /usr/bin/portageq ]; then
+if [ -x /usr/bin/cowsay -a -x /usr/bin/fortune -a -x /usr/bin/lolcat ]; then
     {fortune | cowsay -f $MYZSHDIR/larry.cow;
-    zsh --version} | lolcat 
+    zsh --version} | lolcat
 fi
 # -- check the characte's unicode encoding --
 codepoints () { printf 'U+%04x\n' ${@/#/\'} ; }
