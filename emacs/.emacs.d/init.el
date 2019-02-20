@@ -34,7 +34,7 @@
 			 ("melpa" . "https://melpa.org/packages/")
 			 ("melpa-stable" . "http://stable.melpa.org/packages/")
 			 ("org"   . "https://orgmode.org/elpa/")))
-;; fixes some package issues
+(package-initialize)
 
 ;; install use-package
 (unless (package-installed-p 'use-package)
