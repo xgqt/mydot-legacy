@@ -52,12 +52,13 @@ alias chu='sudo emerge -avNUD @world'                                   # run th
 alias ewup='sudo eix-sync && sudo eix-remote update && sudo emerge -avuND @world' 		        # world update using eix to sync
 
 # --- Git ---
-alias gadd='git add .'
-alias gcommit='git commit'
-alias gpush='git push'
-alias gpull='git pull'
-alias gstat='git status'
-alias gdiff='git diff'
+alias g-s='git status'
+alias g-d='git diff'
+alias g-a='git add .'
+alias g-c='git commit'
+alias g-p='git push'
+alias g-g='git pull'
+alias g-r='git reset --hard'
 
 # --- fetch ---
 alias neo='neofetch \
