@@ -98,3 +98,5 @@ if [ -x /usr/bin/cowsay -a -x /usr/bin/fortune -a -x /usr/bin/lolcat ]; then
 fi
 # -- check the characte's unicode encoding --
 codepoints () { printf 'U+%04x\n' ${@/#/\'} ; }
+# -- ls after changing dir --
+chpwd() ls
