@@ -8,7 +8,7 @@
 #              |___/        
 
 # --- MYZSHDIR Warning --- #
-if [[ ! -x $MYZSHDIR ]]; then; echo "Warning! no $MYZSHDIR found!"; fi
+if [[ ! -x $MYZSHDIR ]]; then echo "Warning! no $MYZSHDIR found!"; fi
 
 # --- larrysay --- #
 if [ -x /usr/bin/cowsay -a -x /usr/bin/fortune -a -x /usr/bin/lolcat ]; then
