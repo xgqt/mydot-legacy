@@ -1,22 +1,13 @@
 #!/bin/zsh
 
-# ~/.zshrc
-
 #          _
 #  _______| |__  _ __ ___
 # |_  / __| '_ \| '__/ __|
 #  / /\__ \ | | | | | (__
 # /___|___/_| |_|_|  \___|
 
-# ----- setting the path -----
-# !!!!! WARNING !!!!!
-# this is important for
-# themes, highlighting and suggestions
-MYZSHDIR="$HOME/zsh.d"
-if [[ ! -x $MYZSHDIR ]]; then; echo "Warning! no $MYZSHDIR found!"; fi
-
 # --- Scripts --- #
-# add my scripts and go programs to PATH
+# add additional programs to PATH
 PATH=$PATH:$HOME/scripts:$HOME/go/bin
 
 # --- Completion --- #
@@ -26,7 +17,7 @@ compinit
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 zstyle ':completion:*' menu select
-# -- tip: TAB-TAB to move into the selection menu
+# tip: TAB-TAB to move into the selection menu
 # -- Correction --
 setopt correctall
 
@@ -58,8 +49,6 @@ use_color=true
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '\C-x\C-e' edit-command-line
-# -- File Editor --
-EDITOR=vim
 # -- Change the window title of X terminals --
 case $TERM in
     xterm*)
@@ -91,11 +80,6 @@ fi
 . $MYZSHDIR/highlighting/zsh-syntax-highlighting.zsh
 
 # --- some fun stuff --- #
-# -- larrysay --
-if [ -x /usr/bin/cowsay -a -x /usr/bin/fortune -a -x /usr/bin/lolcat ]; then
-    {fortune | cowsay -f $MYZSHDIR/larry.cow;
-    zsh --version} | lolcat
-fi
 # -- check the characte's unicode encoding --
 codepoints () { printf 'U+%04x\n' ${@/#/\'} ; }
 # -- ls after changing dir --
