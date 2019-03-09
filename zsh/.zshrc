@@ -40,6 +40,9 @@ bindkey "\e[H"  beginning-of-line
 bindkey "\e[F"  end-of-line
 # -- Reverse search --
 bindkey '^R' history-incremental-search-backward
+# -- Kill & Yank --
+bindkey '^U' backward-kill-line
+bindkey '^Y' yank
 
 # --- Miscellaneous settings --- #
 setopt autocd				# directory name to change dir
