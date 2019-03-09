@@ -141,6 +141,7 @@
     font = Hack 11
     foreground_color = "#839496"
     icon_bell = False
+    login_shell = True
     palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#073642:#dc322f:#859900:#c17d11:#268bd2:#d33682:#2aa198:#eee8d5"
     scrollbar_position = hidden
     show_titlebar = False
