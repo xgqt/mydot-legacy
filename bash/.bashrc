@@ -71,8 +71,3 @@ fi
 # -- auto-change directory
 # allows you to cd into directory merely by typing the directory name
 shopt -s autocd
-
-# --- Fun Stuff ---
-if [ -x /usr/bin/cowsay -a -x /usr/bin/fortune -a -x /usr/bin/lolcat ]; then
-    fortune | cowsay -f $HOME/zsh.d/larry.cow | lolcat
-fi
