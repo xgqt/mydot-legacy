@@ -17,6 +17,7 @@
       maximised = False
       order = 0
       parent = ""
+      size = 663, 700
       type = Window
     [[[terminal1]]]
       order = 0
@@ -48,7 +49,7 @@
       ratio = 0.601900739176
       type = VPaned
     [[[terminal2]]]
-      command = ./go/bin/gotop
+      command = ~/go/bin/gotop
       order = 0
       parent = child1
       profile = default
