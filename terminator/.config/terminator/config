@@ -17,7 +17,7 @@
       maximised = False
       order = 0
       parent = ""
-      size = 663, 700
+      size = 676, 662
       type = Window
     [[[terminal1]]]
       order = 0
@@ -33,19 +33,16 @@
       maximised = False
       order = 0
       parent = ""
-      position = 0:28
       size = 1675, 955
       type = Window
     [[[child1]]]
       order = 0
       parent = child0
-      position = 599
       ratio = 0.358897543439
       type = HPaned
     [[[child3]]]
       order = 1
       parent = child1
-      position = 570
       ratio = 0.601900739176
       type = VPaned
     [[[terminal2]]]
@@ -76,26 +73,22 @@
       maximised = False
       order = 0
       parent = ""
-      position = 0:28
       size = 1675, 955
       title = ""
       type = Window
     [[[child1]]]
       order = 0
       parent = child0
-      position = 832
       ratio = 0.487976539589
       type = HPaned
     [[[child2]]]
       order = 0
       parent = child1
-      position = 381
       ratio = 0.399790136411
       type = VPaned
     [[[child5]]]
       order = 1
       parent = child1
-      position = 271
       ratio = 0.284365162644
       type = VPaned
     [[[terminal3]]]
