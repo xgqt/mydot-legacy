@@ -127,7 +127,7 @@
 		      :font "Monospace"
 		      :weight 'normal
 		      :width 'normal
-		      :height 105
+		      :height 110
 		      )
 #+END_SRC
 ** Theme
