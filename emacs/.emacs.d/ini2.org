@@ -4,7 +4,7 @@
 * Environment
 ** Auto-Update
 #+BEGIN_SRC emacs-lisp
-  ;;; Package: auto-update
+  ;; Package: auto-update
   (use-package auto-package-update
     :ensure t
     :config
@@ -14,13 +14,13 @@
 #+END_SRC
 ** config Edit/Reload
 #+BEGIN_SRC emacs-lisp
-  ;;; Warning: Check the location of files first!
-  ;; edit ini2.org
+  ;; Warning: Check the location of files first!
+  ;;; edit ini2.org
   (defun config-visit ()
     (interactive)
     (find-file "~/.emacs.d/ini2.org" ))
   (global-set-key (kbd "C-c e") 'config-visit)
-  ;; reload ~/.emacs.d/ini2.org at runtime
+  ;;; reload ~/.emacs.d/ini2.org at runtime
   (defun config-reload ()
     (interactive)
     (org-babel-load-file (expand-file-name "~/.emacs.d/ini2.org" )))
@@ -28,64 +28,64 @@
 #+END_SRC
 ** Terminal
 #+BEGIN_SRC emacs-lisp
-  ;; shell = bash  
+  ;;; shell = bash  
   (defvar my-term-shell "/bin/bash")
   (defadvice ansi-term (before force-bash)
     (interactive (list my-term-shell)))
   (ad-activate 'ansi-term)
-  ;; set SUPER (windows key) and enter (RETURN) to launch ansi-term
+  ;;; set SUPER (windows key) and enter (RETURN) to launch ansi-term
   (global-set-key (kbd "<s-return>") 'ansi-term) 
 #+END_SRC
 ** Minor
 #+BEGIN_SRC emacs-lisp
-  ;; no toolbar:
+  ;;; no toolbar:
   (tool-bar-mode -1)
-  ;; no menubar:
-  ;;(menu-bar-mode -1)
-  ;; no scrollbar:
+  ;;; no menubar:
+  ;;;(menu-bar-mode -1)
+  ;;; no scrollbar:
   (scroll-bar-mode -1)
-  ;; line numbers:
+  ;;; line numbers:
   (global-display-line-numbers-mode 1)
-  ;; scrolling:
+  ;;; scrolling:
   (setq scroll-conservatively 100)
-  ;; no "bell" (audible notification):
+  ;;; no "bell" (audible notification):
   (setq ring-bell-function 'ignore)
-  ;; highlight:
+  ;;; highlight:
   (when window-system (global-hl-line-mode t))
-  ;; prettify (lambda to icon):
+  ;;; prettify (lambda to icon):
   (when window-system (global-prettify-symbols-mode t))
-  ;; use mouse in xterm  
+  ;;; use mouse in xterm  
   (xterm-mouse-mode)
-  ;; auto reloading (reverting) buffers
+  ;;; auto reloading (reverting) buffers
   (global-auto-revert-mode 1)
-  ;; disable lock files:
+  ;;; disable lock files:
   (setq create-lockfiles nil)
-  ;; disable autosave:
+  ;;; disable autosave:
   (setq auto-save-default nil)
-  ;; disable backups:
+  ;;; disable backups:
   (setq make-backup-files nil)
-  ;; backups directory:
-  ;;(setq backup-directory-alist '(("" . "~/.emacs.d/backup")))
+  ;;; backups directory:
+  ;;;(setq backup-directory-alist '(("" . "~/.emacs.d/backup")))
 #+END_SRC
 ** Window Size & Placement
 #+BEGIN_SRC emacs-lisp
-  ;; should work well with 88 x 43
-  ;; window size in de/wm - minimalized
+  ;;; should work well with 88 x 43
+  ;;; window size in de/wm - minimalized
   (when window-system
-  ;;  (set-frame-position (selected-frame) 50 40)
+  ;;;  (set-frame-position (selected-frame) 50 40)
     (set-frame-size (selected-frame) 88 45))
 #+END_SRC
 ** Transparency
 #+BEGIN_SRC emacs-lisp
-  ;;; Commentary:
+  ;; Commentary:
   ;;;;(set-frame-parameter (selected-frame) 'alpha '(<active> . <inactive>))
   ;;;;(set-frame-parameter (selected-frame) 'alpha <both>)
-  ;;
-  ;;; Code:
+  ;;;
+  ;; Code:
   (set-frame-parameter (selected-frame) 'alpha '(95 . 80))
   (add-to-list 'default-frame-alist '(alpha . (95 . 80)))
-  ;;
-  ;; You can use the following snippet after you’ve set the alpha as above to assign a toggle to “C-c t”
+  ;;;
+  ;;; You can use the following snippet after you’ve set the alpha as above to assign a toggle to “C-c t”
   (defun toggle-transparency ()
     (interactive)
     (let ((alpha (frame-parameter nil 'alpha)))
@@ -93,7 +93,7 @@
        nil 'alpha
        (if (eql (cond ((numberp alpha) alpha)
 		       ((numberp (cdr alpha)) (cdr alpha))
-		       ;; Also handle undocumented (<active> <inactive>) form.
+		       ;;; Also handle undocumented (<active> <inactive>) form.
 		       ((numberp (cadr alpha)) (cadr alpha)))
 		100)
 	   '(95 . 80) '(100 . 100)))))
@@ -101,28 +101,39 @@
 #+END_SRC
 ** Quitting
 #+BEGIN_SRC emacs-lisp
-  ;;pass "y or n" instead of "yes or no"
+  ;;;pass "y or n" instead of "yes or no"
   (defalias 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
 ** Disable clipboard
 #+BEGIN_SRC emacs-lisp
-  ;;; Commentary:
-  ;; There were huge time delays when closing Emacs
-  ;; This should solve the problem
-  ;;; Code:
+  ;; Commentary:
+  ;;; There were huge time delays when closing Emacs
+  ;;; This should solve the problem
+  ;; Code:
   (setq x-select-enable-clipboard-manager nil)
 #+END_SRC
 ** Zoom with Scroll
 #+BEGIN_SRC emacs-lisp
-  ;;binding - Control & Scroll Up - Increase 
+  ;;;binding - Control & Scroll Up - Increase 
   (global-set-key [C-mouse-4] 'text-scale-increase)
-  ;;binding - Control & Scroll Down - Decrease
+  ;;;binding - Control & Scroll Down - Decrease
   (global-set-key [C-mouse-5] 'text-scale-decrease)
+#+END_SRC
+** font
+#+BEGIN_SRC emacs-lisp
+  ;; Commentary
+  ;;; font settings
+  (set-face-attribute 'default nil
+		      :font "Monospace"
+		      :weight 'normal
+		      :width 'normal
+		      :height 105
+		      )
 #+END_SRC
 ** Theme
 *** Nord
 #+BEGIN_SRC emacs lisp
-  ;;; Package: nord-theme
+  ;; Package: nord-theme
   (use-package nord-theme
     :ensure t
     :init
@@ -130,8 +141,8 @@
 #+END_SRC
 *** Spacemacs
 #+BEGIN_SRC emacs-lisp
-  ;;; Package: spacemacs-theme
-  ;; install spacemacs-theme if not installed
+  ;; Package: spacemacs-theme
+  ;;; install spacemacs-theme if not installed
   (unless (package-installed-p 'spacemacs-theme)
     (package-refresh-contents)
     (package-install 'spacemacs-theme))
@@ -139,7 +150,7 @@
 #+END_SRC
 *** Zerodark
 #+BEGIN_SRC emacs lisp
-  ;;; Package: zerodark-theme
+  ;; Package: zerodark-theme
 (use-package zerodark-theme
   :ensure t
   :init
@@ -147,7 +158,7 @@
 #+END_SRC
 *** Zenburn
 #+BEGIN_SRC emacs lisp
-  ;;; Package: zenburn-theme
+  ;; Package: zenburn-theme
 (use-package zenburn-theme
   :ensure t
   :init
@@ -155,25 +166,25 @@
 #+END_SRC
 *** Solarized
 #+BEGIN_SRC emacs lisp
-    ;;; Package: solarized-theme
+    ;; Package: solarized-theme
   (use-package solarized-theme
     :ensure t
     :init
-    ;; make the fringe stand out from the background
+    ;;; make the fringe stand out from the background
     (setq solarized-distinct-fringe-background t)
-    ;; Don't change the font for some headings and titles
+    ;;; Don't change the font for some headings and titles
     (setq solarized-use-variable-pitch nil)
-    ;; make the modeline high contrast
+    ;;; make the modeline high contrast
     (setq solarized-high-contrast-mode-line t)
-    ;; Use less bolding
+    ;;; Use less bolding
     (setq solarized-use-less-bold t)
-    ;; Use more italics
+    ;;; Use more italics
     (setq solarized-use-more-italic t)
-    ;; Use less colors for indicators such as git:gutter, flycheck and similar
+    ;;; Use less colors for indicators such as git:gutter, flycheck and similar
     (setq solarized-emphasize-indicators nil)
-    ;; Don't change size of org-mode headlines (but keep other size-changes)
+    ;;; Don't change size of org-mode headlines (but keep other size-changes)
     (setq solarized-scale-org-headlines nil)
-    ;; Avoid all font-size changes
+    ;;; Avoid all font-size changes
     (setq solarized-height-minus-1 1.0)
     (setq solarized-height-plus-1 1.0)
     (setq solarized-height-plus-2 1.0)
@@ -185,9 +196,9 @@
 * File Editing
 ** Insert Date
 #+BEGIN_SRC emacs-lisp
-  ;;; Commentary
-  ;; insert date in non-Org documents
-  ;;; Code:
+  ;; Commentary
+  ;;; insert date in non-Org documents
+  ;; Code:
   (defun insert-date (prefix)
       (interactive "P")
       (let ((format (cond
@@ -196,16 +207,16 @@
 		     ((equal prefix '(16)) "%A, %d. %B %Y")))
 	    (system-time-locale "pl_PL"))
 	(insert (format-time-string format))))
-  ;; binding
+  ;;; binding
   (global-set-key (kbd "C-c d") 'insert-date)
-  ;; howto:
-  ;; ‘C-c d’: 13.04.2004
-  ;; ‘C-u C-c d’: 2004-04-13
-  ;; ‘C-u C-u C-c d’: Dienstag, 13. April 2004
+  ;;; howto:
+  ;;; ‘C-c d’: 13.04.2004
+  ;;; ‘C-u C-c d’: 2004-04-13
+  ;;; ‘C-u C-u C-c d’: Dienstag, 13. April 2004
 #+END_SRC
 ** Encoding
 #+BEGIN_SRC emacs-lisp
-  ;; set encoding to utf-8
+  ;;; set encoding to utf-8
   (setq locale-coding-system 'utf-8)
   (set-terminal-coding-system 'utf-8)
   (set-keyboard-coding-system 'utf-8)
@@ -215,7 +226,7 @@
 ** Completion
 *** Electric - bracket autocompletion.
 #+BEGIN_SRC emacs-lisp
-  ;;; Code:
+  ;; Code:
   (setq electric-pair-pairs '(
 			      (?\{ . ?\})
 			      (?\( . ?\))
@@ -226,24 +237,24 @@
 #+END_SRC
 *** HTML Completion
 #+BEGIN_SRC emacs-lisp
-  ;; editing css and js files using html-mode
+  ;;; editing css and js files using html-mode
   (add-to-list 'auto-mode-alist '("\\.css$" . html-mode))
   (add-to-list 'auto-mode-alist '("\\.cfm$" . html-mode))
-  ;; highlighting
+  ;;; highlighting
   (use-package htmlize
     :ensure t)
-  ;;
-  ;; Make emacs always close html tags
-  ;; Tip: Normally you may want tou use "C-c /" since Emacs autocloses "<" with ">" making it impossible to actually do the following; thus to do so you have to delete > and rewrite >, then it closes with the closing tag.
-  ;; This one doesn't work
-  ;;(add-hook 'html-mode-hook #'(lambda nil (setq sgml-xml-mode t)))
-  ;; This one appears to do the trick:
+  ;;;
+  ;;; Make emacs always close html tags
+  ;;; Tip: Normally you may want tou use "C-c /" since Emacs autocloses "<" with ">" making it impossible to actually do the following; thus to do so you have to delete > and rewrite >, then it closes with the closing tag.
+  ;;; This one doesn't work
+  ;;;(add-hook 'html-mode-hook #'(lambda nil (setq sgml-xml-mode t)))
+  ;;; This one appears to do the trick:
   (defun my-sgml-insert-gt ()
     "Insert a `>' character and call `my-sgml-close-tag-if-necessary', leaving point where it is."
     (interactive)
     (insert ">")
     (save-excursion (my-sgml-close-tag-if-necessary)))
-  ;;
+  ;;;
   (defun my-sgml-close-tag-if-necessary ()
     "Call sgml-close-tag if the tag immediately before point is an opening tag that is not followed by a matching closing tag."
     (when (looking-back "<\\s-*\\([^</> \t\r\n]+\\)[^</>]*>")
@@ -251,13 +262,13 @@
 	(unless (and (not (sgml-unclosed-tag-p tag))
 	   (looking-at (concat "\\s-*<\\s-*/\\s-*" tag "\\s-*>")))
       (sgml-close-tag)))))
-  ;;
+  ;;;
   (eval-after-load "sgml-mode"
     '(define-key sgml-mode-map ">" 'my-sgml-insert-gt))
 #+END_SRC
 *** Auto-Complete
 #+BEGIN_SRC emacs-lisp
-  ;;; Package: auto-complete
+  ;; Package: auto-complete
   (use-package auto-complete
       :ensure t
       :config
@@ -265,8 +276,8 @@
 #+END_SRC
 ** Flycheck
 #+BEGIN_SRC emacs-lisp
-  ;;; Package: flycheck
-  ;; auto-check
+  ;; Package: flycheck
+  ;;; auto-check
   (use-package flycheck
     :ensure t
     :init
@@ -274,8 +285,8 @@
 #+END_SRC
 ** Yasnippet
 #+BEGIN_SRC emacs-lisp
-  ;;; Package: yasnippet
-  ;; code snippets
+  ;; Package: yasnippet
+  ;;; code snippets
   (use-package yasnippet
     :ensure t
     :init
@@ -283,7 +294,7 @@
 #+END_SRC
 ** Rainbow color
 #+BEGIN_SRC emacs-lisp
-  ;;; Package: rainbow-mode
+  ;; Package: rainbow-mode
   (use-package rainbow-mode
     :ensure t
     :init
@@ -291,20 +302,20 @@
 #+END_SRC
 ** Rainbow delimeters
 #+BEGIN_SRC emacs-lisp
-  ;;; Package: rainbow-delimiters
+  ;; Package: rainbow-delimiters
     (use-package rainbow-delimiters
       :ensure t
       :init
-      ;;(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+      ;;;(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
       (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
       )
 #+END_SRC
 ** Avy
 #+BEGIN_SRC emacs-lisp
-  ;;; Package: avy
-  ;; makes searching inside a file easier
-  ;; after pressung binded keys, pass a letter,
-  ;; then pass symbols for the highlighted letter to which you want to go to
+  ;; Package: avy
+  ;;; makes searching inside a file easier
+  ;;; after pressung binded keys, pass a letter,
+  ;;; then pass symbols for the highlighted letter to which you want to go to
   (use-package avy
     :ensure t
     :bind
@@ -312,8 +323,8 @@
 #+END_SRC
 ** Beacon mode
 #+BEGIN_SRC emacs-lisp
-  ;;; Package: beacon
-  ;; fast line highlight when switching
+  ;; Package: beacon
+  ;;; fast line highlight when switching
   (use-package beacon
     :ensure t
     :config
@@ -321,17 +332,17 @@
 #+END_SRC
 ** Projectile
 #+BEGIN_SRC emacs-lisp
-  ;;; Package: projectile
+  ;; Package: projectile
   (use-package projectile
     :ensure t
     :init
     (projectile-mode 1))
-  ;; binding
+  ;;; binding
   (global-set-key (kbd "<f5>") 'projectile-compile-project)
 #+END_SRC
 ** Magit
 #+BEGIN_SRC emacs-lisp
-  ;;; Package: magit
+  ;; Package: magit
   (use-package magit
   :ensure t
   :config
@@ -342,8 +353,8 @@
 #+END_SRC
 ** Sudo Edit
 #+BEGIN_SRC emacs-lisp
-  ;;; Package: sudo-edit
-  ;; this changes active user to root
+  ;; Package: sudo-edit
+  ;;; this changes active user to root
   (use-package sudo-edit
     :ensure t
     :bind
@@ -352,7 +363,7 @@
 * Keybinding Help
 **  Which Key
 #+BEGIN_SRC emacs-lisp
-  ;;; Package: which-key
+  ;; Package: which-key
   (use-package which-key
     :ensure t
     :init
@@ -361,13 +372,13 @@
 * Org
 ** Minor
 #+BEGIN_SRC emacs-lisp
-  ;; auto-display inline images (ex. [[~/image.png]])
-  ;;(setq org-startup-with-inline-images t)
+  ;;; auto-display inline images (ex. [[~/image.png]])
+  ;;;(setq org-startup-with-inline-images t)
 #+END_SRC
 ** Org Bullets
 #+BEGIN_SRC emacs-lisp
-  ;;; Package: org-bullets
-  ;; make org look prettier
+  ;; Package: org-bullets
+  ;;; make org look prettier
   (use-package org-bullets
     :ensure t
     :config
@@ -375,8 +386,8 @@
 #+END_SRC
 ** Same edit window
 #+BEGIN_SRC emacs-lisp
-  ;; while C-c ' replace the .org file with editor
-  ;; then exit editor normally with C-c '
+  ;;; while C-c ' replace the .org file with editor
+  ;;; then exit editor normally with C-c '
   (setq org-src-window-setup 'current-window)
 #+END_SRC
 ** Wrap words
@@ -385,7 +396,7 @@
 #+END_SRC
 ** Org Agenda
 #+BEGIN_SRC emacs-lisp
-  ;; update to your preferences
+  ;;; update to your preferences
   (global-set-key "\C-ca" 'org-agenda)
   (setq org-agenda-files (list
 			  "~/Documents/diary/gentoo-linux-diary.org"
@@ -395,7 +406,7 @@
 * modeline
 ** Spaceline
 #+BEGIN_SRC emacs-lisp
-  ;;; Package: spaceline
+  ;; Package: spaceline
   (use-package spaceline
     :ensure t
     :config
@@ -405,7 +416,7 @@
 #+END_SRC
 ** Diminish
 #+BEGIN_SRC emacs-lisp
-  ;;; Package: diminish
+  ;; Package: diminish
   (use-package diminish
     :ensure t
     :init
@@ -420,14 +431,14 @@
 #+END_SRC
 ** Clock
 #+BEGIN_SRC emacs-lisp
-  ;; to be fair i don't really need it as I'm not using EXWM now
-  ;;(setq display-time-24hr-format t)
-  ;;(setq display-time-format "%H:%M - %d %B %Y")
-  ;;(display-time-mode 1)
+  ;;; to be fair i don't really need it as I'm not using EXWM now
+  ;;;(setq display-time-24hr-format t)
+  ;;;(setq display-time-format "%H:%M - %d %B %Y")
+  ;;;(display-time-mode 1)
 #+END_SRC
 ** dmenu
 #+BEGIN_SRC emacs-lisp
-  ;;; Package: dmenu
+  ;; Package: dmenu
  (use-package dmenu
     :ensure t
     :bind
@@ -440,12 +451,12 @@
 #+END_SRC
 ** expert mode
 #+BEGIN_SRC emacs-lisp
-  ;; kill buffers (while in menu for switching buffers; pass d on a buffer, x confirmes) without confirmation (y or n)
+  ;;; kill buffers (while in menu for switching buffers; pass d on a buffer, x confirmes) without confirmation (y or n)
   (setq ibuffer-expert t)
 #+END_SRC
 ** IDO mode
 #+BEGIN_SRC emacs-lisp
-  ;; buffer stuff
+  ;;; buffer stuff
   (setq ido-enable-flex-matching nil)
   (setq ido-create-new-buffer 'always)
   (setq ido-everywhere t)
@@ -453,8 +464,8 @@
 #+END_SRC
 ** IDO-vertical
 #+BEGIN_SRC emacs-lisp
-  ;;; Package: ido-vertical-mode
-  ;; better position
+  ;; Package: ido-vertical-mode
+  ;;; better position
   (use-package ido-vertical-mode
     :ensure t
     :init
@@ -463,13 +474,13 @@
 #+END_SRC
 ** IDO - switch buffers
 #+BEGIN_SRC emacs-lisp
-  ;; better buffer switching
+  ;;; better buffer switching
   (global-set-key (kbd "C-x b") 'ido-switch-buffer)
 #+END_SRC
 ** Smex config
 #+BEGIN_SRC emacs-lisp
-  ;;; Package: smex
-  ;; run known programs faster
+  ;; Package: smex
+  ;;; run known programs faster
   (use-package smex
     :ensure t
     :init
@@ -479,8 +490,8 @@
 #+END_SRC
 ** Switch-window
 #+BEGIN_SRC emacs-lisp
-  ;;; Package: switch-windows
-  ;; when you press C-x o you choose a window
+  ;; Package: switch-windows
+  ;;; when you press C-x o you choose a window
   (use-package switch-window
     :ensure t
     :config
@@ -495,14 +506,14 @@
 #+END_SRC
 ** following window splits
 #+BEGIN_SRC emacs-lisp
-  ;; better window splitting
+  ;;; better window splitting
   (defun split-and-follow-horizontally ()
     (interactive)
     (split-window-below)
     (balance-windows)
     (other-window 1))
   (global-set-key (kbd "C-x 2") 'split-and-follow-horizontally)
-  ;;
+  ;;;
   (defun split-and-follow-vertically ()
     (interactive)
     (split-window-right)
@@ -513,12 +524,12 @@
 * Recent Files
 ** recentf-mode
 #+BEGIN_SRC emacs-lisp
-    ;; enabling
+    ;;; enabling
     (recentf-mode 1)
-    ;; list length
+    ;;; list length
     (setq recentf-max-menu-items 20)
-    ;; binding
-    ;;(global-set-key "\C-c\ \C-r" 'recentf-open-files)
+    ;;; binding
+    ;;;(global-set-key "\C-c\ \C-r" 'recentf-open-files)
     (global-set-key (kbd "C-c f") 'recentf-open-files)
 #+END_SRC
 * Startup Customization
@@ -529,19 +540,19 @@
 #+END_SRC
 ** Dashboard
 #+BEGIN_SRC emacs-lisp
-  ;;; Package: dashboard.
+  ;; Package: dashboard.
   (use-package dashboard
   :ensure t
   :config
   (dashboard-setup-startup-hook)
-  ;; for Emacs as deamon:
-  ;;(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+  ;;; for Emacs as deamon:
+  ;;;(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
   (setq dashboard-banner-logo-title "This lack of Emacs offends Stallman!")
   (setq dashboard-banner-logo-title-face t)
   (setq dashboard-startup-banner "~/.emacs.d/img/Noise_Marine_Transparent.png")
-  ;;(setq dashboard-startup-banner 'official)
+  ;;;(setq dashboard-startup-banner 'official)
   (setq dashboard-items '((recents  . 10)
-			  ;;(projects . 5)
+			  ;;;(projects . 5)
 			  ))
   (add-to-list 'dashboard-items '(agenda) t)
   (setq show-week-agenda-p t)
@@ -549,5 +560,5 @@
 #+END_SRC
 ** page break lines
 #+BEGIN_SRC emacs-lisp
-  ;;(turn-on-page-break-lines-mode)
+  ;;;(turn-on-page-break-lines-mode)
 #+END_SRC

@@ -45,28 +45,3 @@
 (when (file-readable-p "~/.emacs.d/ini2.org")
   (org-babel-load-file (expand-file-name "~/.emacs.d/ini2.org")))
 ;;; init.el ends here
-
-;; auto-config
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(ansi-color-names-vector
-   ["black" "red3" "ForestGreen" "yellow3" "blue" "magenta3" "DeepSkyBlue" "gray50"])
- '(custom-safe-themes
-   (quote
-    ("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
- '(inhibit-default-init t)
- '(inhibit-startup-buffer-menu t)
- '(inhibit-startup-screen t)
- '(package-selected-packages (quote (magit use-package)))
- '(pdf-view-midnight-colors (quote ("#b2b2b2" . "#292b2e"))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#292b2e" :foreground "#b2b2b2" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 110 :width normal :foundry "1ASC" :family "Liberation Mono")))))
