@@ -12,15 +12,13 @@
 	set ruler
 " syntax color
 	syntax on
-" mouse support
-	set mouse=a
 " autocompletion
 	set wildmode=longest,list,full
 " dark background
 	set background=dark
 " auto indenting
 	set autoindent
-" search highlighting ( "/" to search )
+" search highlighting
 	set hlsearch
 " incremental search
 	set incsearch
