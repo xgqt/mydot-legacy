@@ -6,7 +6,7 @@
 [[./Larry_Cow.png]]
 
 * Background
- Worked on this since my Gentoo's first installation, 
+Worked on this since my Gentoo's first installation, 
 because of this this repo contains a lot of gentoo specyfic aliases and tools.
 * Legal Disclaimer
 ** what I did not write:
