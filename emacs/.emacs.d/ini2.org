@@ -1,5 +1,5 @@
 #+TITLE: My Primary Emacs Config in Org
-[[./emacs/.emacs.d/img/Noise_Marine_Transparent.png]]
+[[./img/Noise_Marine_Transparent.png]]
 #+STARTUP: content inlineimages
 * Environment
 ** Auto-Update
