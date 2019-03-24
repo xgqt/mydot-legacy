@@ -70,7 +70,6 @@
 ** Window Size & Placement
 #+BEGIN_SRC emacs-lisp
   ;;; should work well with 88 x 43
-  ;;; window size in de/wm - minimalized
   (when window-system
   ;;;  (set-frame-position (selected-frame) 50 40)
     (set-frame-size (selected-frame) 88 45))
