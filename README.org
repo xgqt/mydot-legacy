@@ -6,7 +6,8 @@
 [[./Larry_Cow.png]]
 
 * Background
-  Worked on this since my Gentoo's first installation, because of this this repo contains a lot of gentoo specyfic aliases and tools.
+ Worked on this since my Gentoo's first installation, 
+because of this this repo contains a lot of gentoo specyfic aliases and tools.
 * Legal Disclaimer
 ** what I did not write:
 - some scripts where the author is mentioned
@@ -30,11 +31,11 @@
    - =$HOME/.themes=  	- for themes
    - =$HOME/.newsboat= 	- for newsboat config file
 *** install one
-    egzample: zsh
-    =stow -v zsh=
+    example: zsh
+    - =stow -v zsh=
 *** uninstall one
-    egzample: zsh
-    =stow -vD zsh=
+    example: zsh
+    - =stow -vD zsh=
 * What is in Here
 - =bash= -	 bash shell configuration
 - =compton= - 	 compton compositor configuration
