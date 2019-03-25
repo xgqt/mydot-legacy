@@ -1,5 +1,5 @@
 #+TITLE: My Primary Emacs Config in Org
-[[~/mydot/emacs/.emacs.d/img/Noise_Marine_Transparent.png]]
+[[./img/Noise_Marine_Transparent.png]]
 #+STARTUP: content inlineimages
 * Environment
 ** Auto-Update
@@ -70,7 +70,6 @@
 ** Window Size & Placement
 #+BEGIN_SRC emacs-lisp
   ;;; should work well with 88 x 43
-  ;;; window size in de/wm - minimalized
   (when window-system
   ;;;  (set-frame-position (selected-frame) 50 40)
     (set-frame-size (selected-frame) 88 45))

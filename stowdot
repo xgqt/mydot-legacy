@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# ----- Checks -----
+# -- Checks --
 # --- check for stow ---
 if [[ ! -x /usr/bin/stow ]]; then
     echo "$(tput bold)There is no stow on the sytem! Exiting.$(tput sgr0)"
@@ -16,7 +16,7 @@ if [[ ! -x $mydir ]]; then
 fi
 
 # --- check needed directories ---
-for chkdir in "$HOME/.config" "$HOME/.emacs.d" "$HOME/.themes"; do
+for chkdir in "$HOME/.config" "$HOME/.emacs.d" "$HOME/.themes" "$HOME/.newsboat"; do
     if [[ ! -x $chkdir ]]; then
 	mkdir $chkdir
 	echo "$chkdir created"
@@ -28,14 +28,14 @@ done
 mytmp=/tmp/mytmp
 mkdir $mytmp
 
-# ----- Hide -----
+# -- Hide --
 for file in $mydir/*; do
     if [[ -f $file ]]; then
 	mv "$file" "$mytmp/"
     fi
 done
 
-# ----- Stow or Unstow -----
+# --- Stow or Unstow ---
 if [[ "$1" = "remove" ]]; then
    # unlink
    stow -D -d $mydir * -v
@@ -50,7 +50,7 @@ else
    fi    
 fi
 
-# ----- Show -----
+# --- Show ---
 for file in $mytmp/*; do
     if [[ -f $file ]]; then
 	mv "$file" "$mydir/"
