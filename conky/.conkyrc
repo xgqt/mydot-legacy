@@ -77,8 +77,7 @@ ${color #b58900} ${alignr}${addr eno1}
 ${color #775555}Do: ${color #2c97c9}${downspeed eno1}/s${alignr}${color #557755}Up: ${color #2c97c9}${upspeed eno1}/s$color
 ${downspeedgraph eno1 32,95 000000 775555} ${upspeedgraph eno1 32,95 000000 557755}
 ${color #eee8d5}PORTAGE:${color #5b6dad}${hr 2}$color
-${color #93a1a1}Sync:${alignr}${color #6c71c4}${exec printf '%(%A %H:%M)T\n' $(grep 'Sync completed' /var/log/emerge.log | sed -n '$ s/:.*//p')
-}
+${color #93a1a1}Sync:${alignr}${color #6c71c4}${exec printf '%(%a %b %d %H:%M)T\n' $(grep 'Sync completed' /var/log/emerge.log | sed -n '$ s/:.*//p') }
 ${color #93a1a1}Status:${alignr}${color #6c71c4}${execi 30 ~/conky.d/emerge-status.sh}
 ${color #93a1a1}Progress: ${color #6c71c4}${execibar 30 ~/conky.d/emerge-progress.sh}
 ${color #93a1a1}Pkg:${alignr}${color #6c71c4}${execi 30 ~/conky.d/emerge-current.sh}
