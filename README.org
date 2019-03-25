@@ -12,7 +12,6 @@ because of this this repo contains a lot of gentoo specyfic aliases and tools.
 ** what I did not write:
 - some scripts where the author is mentioned
 - compton config - not mine, but modified
-- themes - not mine, but modified
 - zsh plugins ( git-prompt.sh , zsh-syntax-highlighting & zsh-autosuggestions )
 * Howto
 ** Installaton
@@ -28,7 +27,6 @@ because of this this repo contains a lot of gentoo specyfic aliases and tools.
    Remember to crate needed directories to avoid conflicts:
    - =$HOME/.config= 	- for your users config files
    - =$HOME/.emacs.d= 	- for Emacs
-   - =$HOME/.themes=  	- for themes
    - =$HOME/.newsboat= 	- for newsboat config file
 *** install one
     example: zsh
@@ -45,7 +43,6 @@ because of this this repo contains a lot of gentoo specyfic aliases and tools.
 - =neofetch= -	 neofetch configuration
 - =scripts= -	 whole scripts folder
 - =terminator= - terminator termianal emulator configurtion
-- =themes= -	 my take on some themes
 - =tmux= -	 tmux terminal multiplexer comfiguration
 - =vim= -	 vim text editor simple configuration
 - =zsh= -	 zsh configuration, themes & plugins 
