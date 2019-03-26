@@ -1,14 +1,8 @@
-;;; Commentary:
-;; delete your ~/.emacs file
-;; place this file in ~/.emacs.d (as ~/.emacs.d/init.el)
+;;; init.el
+;;; delete your ~/.emacs file
+;;; place this file in ~/.emacs.d (as ~/.emacs.d/init.el)
 
-;; ORG MODE my file = ini2.org
-;; tab closes headers
-;; <s tab to (emacs-lisp) create code in ini2.org
-;; editing code ing org mode: C-c '
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; This fixed garbage collection, makes Emacs start up faster ;;;;;;;
+;;; Fixes garbage collection, makes Emacs start up faster
 (setq gc-cons-threshold 402653184
       gc-cons-percentage 0.6)
 
@@ -24,9 +18,8 @@
 
 (add-hook 'emacs-startup-hook 'startup/revert-file-name-handler-alist)
 (add-hook 'emacs-startup-hook 'startup/reset-gc)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; package archives
+;;; package archives
 (require 'package)
 (setq package-enable-at-startup nil)
 (setq package-archives '(("ELPA"  . "http://tromey.com/elpa/")
@@ -36,12 +29,13 @@
 			 ("org"   . "https://orgmode.org/elpa/")))
 (package-initialize)
 
-;; install use-package
+;;; install use-package
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 
-;; This is the actual config file. It is omitted if it doesn't exist so emacs won't refuse to launch.
+;;; This is the actual config file. It is omitted if it doesn't exist so emacs won't refuse to launch.
 (when (file-readable-p "~/.emacs.d/ini2.org")
   (org-babel-load-file (expand-file-name "~/.emacs.d/ini2.org")))
+
 ;;; init.el ends here
