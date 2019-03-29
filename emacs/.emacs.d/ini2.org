@@ -68,9 +68,9 @@
 #+END_SRC
 ** Window Size
 #+BEGIN_SRC emacs-lisp
-  ;;; Should work well with 88 x 43
+  ;;; Should work well with 88 x 36
   (when window-system
-    (set-frame-size (selected-frame) 88 45))
+    (set-frame-size (selected-frame) 88 36))
 #+END_SRC
 ** Transparency
 #+BEGIN_SRC emacs-lisp
