@@ -25,14 +25,15 @@ cd /usr/src/linux
 echo -e "\n${bold}$(pwd)${normal}"
 echo -e "\n${bold}Remember to save the configuration as '.config'!${normal}\n"
 sleep 3
+
 # generate the kernel
 sudo genkernel --menuconfig --no-mrproper --makeopts=-j4 --disklabel --no-clean --microcode --install all
 if [ $? = '0' ]
 then
     echo -e "\n${bold}Kernel compiled!${normal}\n"
     sleep 2
-    # rebuild the modules
 
+    # rebuild the modules
     sudo emerge -av1 @module-rebuild
     if [ $? = '0' ]
     then
@@ -40,6 +41,7 @@ then
 	sleep 2
     fi
 
+    # generate grub config file
     sudo grub-mkconfig -o /boot/grub/grub.cfg
     if [ $? = '0' ]
     then
