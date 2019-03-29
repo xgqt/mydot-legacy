@@ -1,14 +1,18 @@
 #!/bin/sh
 #
-# ufetch-gentoo - tiny system info for gentoo
+# gfetch - tiny system info for gentoo
+#
+# based on
+# https://github.com/jschx/ufetch/
+#
 
-## INFO
-
+# INFO
 # user is already defined
 host="$(hostname)"
 os='Gentoo Linux'
 kernel="$(uname -sr)"
 uptime="$(uptime -p | sed 's/up //')"
+world="$(cat /var/lib/portage/world | wc -l)"
 packages="$(ls -d /var/db/pkg/*/* | wc -l)"
 shell="$(basename ${SHELL})"
 
@@ -27,9 +31,7 @@ else
 	envtype='WM'
 fi
 
-## DEFINE COLORS
-
-# probably don't change these
+# Color Definitions
 bold="$(tput bold)"
 black="$(tput setaf 0)"
 red="$(tput setaf 1)"
@@ -41,21 +43,21 @@ cyan="$(tput setaf 6)"
 white="$(tput setaf 7)"
 reset="$(tput sgr0)"
 
-# you can change these
+# Output color
 lc="${reset}${bold}${magenta}"	# labels
 nc="${reset}${bold}${magenta}"	# user and hostname
 ic="${reset}${bold}${white}"	# info
 c0="${reset}${bold}${magenta}"	# first color
-c1="${reset}${magenta}"			# second color
+c1="${reset}${magenta}"		# second color
 
-## OUTPUT
-
+# OUTPUT
 cat <<EOF
 ${c0}     .-----.      ${nc}${USER}${ic}@${nc}${host}${reset}
 ${c0}   .\`    _  \`.    ${lc}OS:        ${ic}${os}${reset}
 ${c0}   \`.   (${c1}_)   ${c0}\`.  ${lc}KERNEL:    ${ic}${kernel}${reset}
 ${c0}     \`${c1}.        /  ${lc}UPTIME:    ${ic}${uptime}${reset}
 ${c1}    .\`       .\`   ${lc}PACKAGES:  ${ic}${packages}${reset}
-${c1}   /       .\`     ${lc}SHELL:     ${ic}${shell}${reset}
-${c1}   \____.-\`       ${lc}${envtype}:        ${ic}${WM}${reset}
+${c1}   /       .\`     ${lc}WORLD:     ${ic}${world}${reset}
+${c1}   \____.-\`       ${lc}SHELL:     ${ic}${shell}${reset}
+${c1}                  ${lc}${envtype}:        ${ic}${WM}${reset}
 EOF
