@@ -3,133 +3,28 @@
   scroll_tabbar = True
   smart_copy = False
   suppress_multiple_term_dialog = True
-  title_font = Hack 10
   title_transmit_bg_color = "#ad7fa8"
   title_use_system_font = False
 [keybindings]
-  help = F11
 [layouts]
   [[default]]
     [[[child0]]]
       fullscreen = False
-      last_active_term = cbe0ca15-db04-4ac2-9b50-976856577cfa
       last_active_window = True
       maximised = False
       order = 0
-      parent = ""
-      size = 676, 662
       type = Window
     [[[terminal1]]]
       order = 0
       parent = child0
       profile = default
       type = Terminal
-      uuid = cbe0ca15-db04-4ac2-9b50-976856577cfa
-  [[music]]
-    [[[child0]]]
-      fullscreen = False
-      last_active_term = 91092881-10e8-46e4-95b0-86438eb9109d
-      last_active_window = True
-      maximised = False
-      order = 0
-      parent = ""
-      size = 1675, 955
-      type = Window
-    [[[child1]]]
-      order = 0
-      parent = child0
-      ratio = 0.358897543439
-      type = HPaned
-    [[[child3]]]
-      order = 1
-      parent = child1
-      ratio = 0.601900739176
-      type = VPaned
-    [[[terminal2]]]
-      command = ~/go/bin/gotop
-      order = 0
-      parent = child1
-      profile = default
-      type = Terminal
-      uuid = cbe0ca15-db04-4ac2-9b50-976856577cfa
-    [[[terminal4]]]
-      command = mocp
-      order = 0
-      parent = child3
-      profile = default
-      type = Terminal
-      uuid = 872c30b6-e86b-4fc7-841d-22a63533096d
-    [[[terminal5]]]
-      order = 1
-      parent = child3
-      profile = default
-      type = Terminal
-      uuid = 91092881-10e8-46e4-95b0-86438eb9109d
-  [[port]]
-    [[[child0]]]
-      fullscreen = False
-      last_active_term = cbe0ca15-db04-4ac2-9b50-976856577cfa
-      last_active_window = True
-      maximised = False
-      order = 0
-      parent = ""
-      size = 1675, 955
-      title = ""
-      type = Window
-    [[[child1]]]
-      order = 0
-      parent = child0
-      ratio = 0.487976539589
-      type = HPaned
-    [[[child2]]]
-      order = 0
-      parent = child1
-      ratio = 0.399790136411
-      type = VPaned
-    [[[child5]]]
-      order = 1
-      parent = child1
-      ratio = 0.284365162644
-      type = VPaned
-    [[[terminal3]]]
-      command = htop
-      directory = ~
-      order = 0
-      parent = child2
-      profile = default
-      type = Terminal
-      uuid = d652bbbb-c7ec-4ece-8fa7-93647afcbd45
-    [[[terminal4]]]
-      command = ""
-      directory = ""
-      order = 1
-      parent = child2
-      profile = default
-      type = Terminal
-      uuid = cbe0ca15-db04-4ac2-9b50-976856577cfa
-    [[[terminal6]]]
-      command = tail -f /var/log/emerge.log
-      directory = /var/log
-      order = 0
-      parent = child5
-      profile = default
-      type = Terminal
-      uuid = 6a5b9a29-3a4b-4156-b4ac-6bbca276cb73
-    [[[terminal7]]]
-      command = ""
-      directory = ""
-      order = 1
-      parent = child5
-      profile = default
-      type = Terminal
-      uuid = 3a963b78-89ad-4204-bea9-04c5b9c69991
 [plugins]
 [profiles]
   [[default]]
     background_color = "#00191f"
     background_darkness = 0.9
     background_type = transparent
-    cursor_blink = False
     cursor_color = "#729fcf"
     delete_binding = automatic
     font = Hack 11
