@@ -12,7 +12,7 @@
     (setq auto-package-update-delete-old-verions t)
     (auto-package-update-maybe))
 #+END_SRC
-** config Edit/Reload
+** Edit/Reload configuration
 #+BEGIN_SRC emacs-lisp
   ;; Edit ini2.org
   (defun config-visit ()
@@ -111,7 +111,7 @@
   ;; Binding - Control & Scroll Down - Decrease
   (global-set-key [C-mouse-5] 'text-scale-decrease)
 #+END_SRC
-** font
+** Font
 #+BEGIN_SRC emacs-lisp
   ;; Font settings
   (set-face-attribute 'default nil
@@ -121,7 +121,7 @@
 		      :height 110
 		      )
 #+END_SRC
-*** Spacemacs
+** Theme
 #+BEGIN_SRC emacs-lisp
   ;; Install spacemacs-theme if not installed
   (unless (package-installed-p 'spacemacs-theme)
@@ -362,7 +362,7 @@
   ;; Better switching
   (global-set-key (kbd "C-x C-b") 'ibuffer)
 #+END_SRC
-** COMMENT expert mode
+** Expert mode
 #+BEGIN_SRC emacs-lisp
   ;; Kill buffers (while in menu for switching buffers; pass d on a buffer, x confirmes) 
   ;; without confirmation (y or n)
@@ -416,7 +416,7 @@
     :bind
     ([remap other-window] . switch-window))
 #+END_SRC
-** following window splits
+** Following window splits
 #+BEGIN_SRC emacs-lisp
   ;; Better window splitting
   (defun split-and-follow-horizontally ()
@@ -434,7 +434,7 @@
   (global-set-key (kbd "C-x 3") 'split-and-follow-vertically)
 #+END_SRC
 * Recent Files
-** recentf-mode
+** Recentf-mode
 #+BEGIN_SRC emacs-lisp
     ;; Enable recent file mode
     (recentf-mode 1)
@@ -445,7 +445,7 @@
     (global-set-key (kbd "C-c f") 'recentf-open-files)
 #+END_SRC
 * Startup Customization
-** startup screen settings
+** Startup screen settings
 #+BEGIN_SRC emacs-lisp
   ;; Startup
   (setq inhibit-startup-screen t)
