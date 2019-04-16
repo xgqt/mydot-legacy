@@ -65,7 +65,7 @@ extractor ()
 }
 
 # --- My Aliases ---
-if [ -x $HOME/zsh.d/aliases ]; then
+if [[ -e $HOME/zsh.d/aliases ]]; then
     . $HOME/zsh.d/aliases
 fi
 # -- auto-change directory

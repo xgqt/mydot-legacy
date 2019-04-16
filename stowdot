@@ -10,14 +10,14 @@ fi
 mydir=$HOME/mydot
 
 # --- check for mydir ( ~/mydot ) ---
-if [[ ! -x $mydir ]]; then
+if [[ ! -d $mydir ]]; then
     echo "$(tput bold)The location of the scrip is wrong! Exiting.$(tput sgr0)"
     exit 1
 fi
 
 # --- check needed directories ---
 for chkdir in "$HOME/.config" "$HOME/.emacs.d" "$HOME/.newsboat"; do
-    if [[ ! -x $chkdir ]]; then
+    if [[ ! -e $chkdir ]]; then
 	mkdir $chkdir
 	echo "$chkdir created"
     else
@@ -47,7 +47,7 @@ else
    stow -d $mydir * -v
    if [[ "$?" = '0' ]]; then
        echo "$(tput bold)The configuration transferred successfully!$(tput sgr0)"
-   fi    
+   fi
 fi
 
 # --- Show ---
