@@ -25,36 +25,11 @@ for chkdir in "$HOME/.config" "$HOME/.emacs.d" "$HOME/.newsboat"; do
     fi
 done
 
-mytmp=/tmp/mytmp
-mkdir $mytmp
-
-# -- Hide --
-for file in $mydir/*; do
-    if [[ -f $file ]]; then
-	mv "$file" "$mytmp/"
+# -- Stow or Unstow --
+for target in $(ls $mydir); do
+    if [ -d $mydir/$target ]; then
+	echo "$(tput bold)$target$(tput sgr0)"
+	if [[ "$1" = "remove" ]]; then stow -v -d $mydir -t $HOME -D $target
+	else stow -v -d $mydir -t $HOME -S $target; fi
     fi
 done
-
-# --- Stow or Unstow ---
-if [[ "$1" = "remove" ]]; then
-   # unlink
-   stow -D -d $mydir * -v
-   if [[ "$?" = '0' ]]; then
-       echo "$(tput bold)The configuration removed successfully!$(tput sgr0)"
-   fi
-else
-   # link
-   stow -d $mydir * -v
-   if [[ "$?" = '0' ]]; then
-       echo "$(tput bold)The configuration transferred successfully!$(tput sgr0)"
-   fi
-fi
-
-# --- Show ---
-for file in $mytmp/*; do
-    if [[ -f $file ]]; then
-	mv "$file" "$mydir/"
-    fi
-done
-
-rm -d /tmp/mytmp
