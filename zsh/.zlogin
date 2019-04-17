@@ -8,10 +8,15 @@
 #              |___/        
 
 # --- MYZSHDIR Warning --- #
-if [[ ! -x $MYZSHDIR ]]; then echo "Warning! no $MYZSHDIR found!"; fi
+if [[ ! -d $MYZSHDIR ]]; then echo "Warning! no $MYZSHDIR found!"; fi
+
+# --- Warning message if a theme isn't set --- #
+if [[ ! -e $MYZSHDIR/tty.zsh-theme || ! -e $MYZSHDIR/emu.zsh-theme ]]; then
+    echo "Link one of themes in $MYZSHDIR/themes to $MYZSHDIR/tty.zsh-theme and one to $MYZSHDIR/emu.zsh-theme";
+fi
 
 # --- larrysay --- #
 if [ -x /usr/bin/cowsay -a -x /usr/bin/fortune ]; then
-    fortune | cowsay -f $MYZSHDIR/larry.cow;
+    fortune | cowsay -f $MYZSHDIR/extra/larry.cow;
     zsh --version
 fi

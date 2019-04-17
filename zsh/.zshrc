@@ -68,9 +68,9 @@ setopt PROMPT_SUBST
 . $MYZSHDIR/git-prompt.sh
 # -- source themes --
 if [[ -z $DISPLAY ]]; then
-    . "$MYZSHDIR/neos.zsh-theme"       	# theme in tty
+    . "$MYZSHDIR/tty.zsh-theme"       	# theme in tty
 else
-    . "$MYZSHDIR/hardX.zsh-theme"      	# theme in emulators
+    . "$MYZSHDIR/emu.zsh-theme"      	# theme in emulators
 fi
 
 # --- Aliases --- #
