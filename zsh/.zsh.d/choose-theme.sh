@@ -1,5 +1,5 @@
 #!/bin/sh
-MYZSHDIR="$HOME/zsh.d"
+MYZSHDIR="$HOME/.zsh.d"
 themedir=$MYZSHDIR/themes
 
 themes=$(ls $themedir)

@@ -1,0 +1,1 @@
+/home/kh/.zsh.d/themes/neos.zsh-theme

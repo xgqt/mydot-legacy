@@ -10,7 +10,7 @@
 # !!!!! WARNING !!!!!
 # this is important for
 # themes, highlighting and suggestions
-MYZSHDIR="$HOME/zsh.d"
+MYZSHDIR="$HOME/.zsh.d"
 
 ### File Editor ###
 EDITOR=vim

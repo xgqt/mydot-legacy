@@ -8,7 +8,7 @@
 #              |___/        
 
 ### MYZSHDIR Warning ###
-if [[ ! -d $MYZSHDIR ]]; then echo "Warning! no $MYZSHDIR found!"; exit 1; fi
+if [[ ! -d $MYZSHDIR ]]; then echo "Warning! no $MYZSHDIR found!"; fi
 
 ### Warning message if a theme isn't set ###
 if [[ ! -e $MYZSHDIR/tty.zsh-theme || ! -e $MYZSHDIR/emu.zsh-theme ]]; then
