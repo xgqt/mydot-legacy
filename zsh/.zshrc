@@ -30,18 +30,19 @@ setopt hist_ignore_space		# ignore space
 setopt share_history			# save immediatelly, make history shareable between terminals
 
 ### Keys ###
+# -- Kill & Yank --
+bindkey -e				# for this set Emacs key bindings
 # -- ctrl-left and ctrl-right --
-bindkey "\e[1;5D" backward-word
-bindkey "\e[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+bindkey "^[[1;5C" forward-word
 # -- del, home and end --
-bindkey "\e[3~" delete-char
-bindkey "\e[H"  beginning-of-line
-bindkey "\e[F"  end-of-line
+bindkey "^[[3~" delete-char
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
 # -- Reverse search --
 bindkey '^R' history-incremental-search-backward
-# -- Kill & Yank --
-bindkey '^U' backward-kill-line
-bindkey '^Y' yank
+# -- Remove C-d binding (list-choices/delete-char-or-list) --
+bindkey -r '^D'				# instead use tab completion
 
 ### Miscellaneous settings ###
 # -- Additional options --
@@ -52,7 +53,7 @@ use_color=true
 # -- Command Editor --
 autoload -U edit-command-line
 zle -N edit-command-line
-bindkey '\C-x\C-e' edit-command-line
+bindkey "^X^E" edit-command-line
 # -- Change the window title of X terminals --
 case $TERM in
     xterm*)
