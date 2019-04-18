@@ -7,17 +7,18 @@
 # /___|_|\___/ \__, |_|_| |_|
 #              |___/        
 
-# --- MYZSHDIR Warning --- #
+### MYZSHDIR Warning ###
 if [[ ! -d $MYZSHDIR ]]; then echo "Warning! no $MYZSHDIR found!"; exit 1; fi
 
-# --- Warning message if a theme isn't set --- #
+### Warning message if a theme isn't set ###
 if [[ ! -e $MYZSHDIR/tty.zsh-theme || ! -e $MYZSHDIR/emu.zsh-theme ]]; then
     echo "Link one of themes in $MYZSHDIR/themes to $MYZSHDIR/tty.zsh-theme and one to $MYZSHDIR/emu.zsh-theme"
+# -- run script to choose a theme --
     $MYZSHDIR/choose-theme.sh
     source ~/.zshrc
 fi
 
-# --- larrysay --- #
+### larrysay ###
 if [ -x /usr/bin/cowsay -a -x /usr/bin/fortune ]; then
     fortune | cowsay -f $MYZSHDIR/extra/larry.cow;
     zsh --version

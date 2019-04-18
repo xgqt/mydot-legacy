@@ -10,14 +10,14 @@
 #  $$$$$$$P        `"""""   ""        ""   Q$$$P     "Q$$$P"     "Q$$$P"
 #  `Q$$P"                                   """
 
-# ----- My Aliases -----
+# My Aliases
 
-# --- system tools ---
+### system tools ###
 # -- directories --
 alias tree='tree -C'
 alias t='tree -a -L 2'
 alias ls='ls --color=auto'
-alias ll='ls -lsah --color=always'
+alias ll='ls -lah --color=always'
 # -- files --
 alias cp='cp -i'							# confirm before overwriting something
 alias c='cat'
@@ -33,25 +33,26 @@ alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'
 # -- system resources --
 alias mtr='mtr --show-ips --curses'
-alias seeo="sudo netstat -tulpn"
+alias seeo='sudo netstat -tulpn'
 alias seen='sudo arp-scan --interface=eno1 --localnet'            	# scan network and show connected devices
 
-# --- Portage ---
+### Portage ###
 # -- logs --
-alias F="tail -f /var/log/emerge-fetch.log"
-alias E="tail -f /var/log/emerge.log"
+alias F='tail -f /var/log/emerge-fetch.log'
+alias E='tail -f /var/log/emerge.log'
 # -- config files --
-alias P="cd /etc/portage && tree -a -L 2"
+alias P='cd /etc/portage && tree -a -L 2'
 alias Read='sudo eselect news read'                               	# use all or new
 # -- emerge --
 alias pep='sudo emerge -av'                                             # install - portage emerge package
 alias chu='sudo emerge -avNUD @world'                                   # run this after changing USE [--newuse, -N] [--changed-use, -U] [--deep, -D]
 alias ewup='sudo eix-sync && sudo eix-remote update && sudo emerge -avuND @world' 		        # world update using eix to sync
 
-# --- Flatpak ---
+### Other Package Managers ###
+# -- Flatpak --
 alias fpk='flatpak'
 
-# --- Git ---
+### Git ###
 alias g-s='git status'
 alias g-d='git diff'
 alias g-a='git add .'
@@ -60,25 +61,25 @@ alias g-p='git push'
 alias g-g='git pull'
 alias g-r='git reset --hard'
 
-# --- fetch ---
+### fetch ###
 alias neo='neofetch \
 --line_wrap off \
 --ascii $HOME/.config/neofetch/gentoo-neo \
 --colors 2 1 2 4 3 7 '
 
-# --- system files ---
+### system files ###
 # -- zsh --
-#alias clear-zsh-history='cat /dev/null > ~/.zsh_history'
+alias clear-zsh-history='cat /dev/null > ~/.zsh_history'
 alias so-zrc='source ~/.zshrc'						# source zshrc
 # -- grub --
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 
-# --- youtube-dl ---
+### youtube-dl ###
 alias ytd-mp3='youtube-dl -i --extract-audio --audio-format mp3 -o "%(playlist_index)s - %(title)s.%(ext)s"'         # for mp3
 alias ytd-webm='youtube-dl -i --merge-output-format webm -o "%(title)s.%(ext)s"'                # video as a webm
 alias ytd-vid='youtube-dl -i -o "%(title)s.%(ext)s"'                                            # video as any format
 alias ytd-sub-pl='youtube-dl -i --write-srt --sub-lang pl -o "%(title)s.%(ext)s"'               # video with polish subtitles
 alias ytd-sub-en='youtube-dl -i --write-srt --sub-lang en -o "%(title)s.%(ext)s"'               # video with english subtitles
 
-# --- other fun stuff ---
+### other fun stuff ###
 alias wttr='curl "http://wttr.in/?0?q"' 

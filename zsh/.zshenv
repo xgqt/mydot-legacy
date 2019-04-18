@@ -6,11 +6,11 @@
 #  / /\__ \ | | |  __/ | | \ V / 
 # /___|___/_| |_|\___|_| |_|\_/  
 
-# ----- setting the path ----- #
+### setting the path ###
 # !!!!! WARNING !!!!!
 # this is important for
 # themes, highlighting and suggestions
 MYZSHDIR="$HOME/zsh.d"
 
-# --- File Editor --- #
+### File Editor ###
 EDITOR=vim

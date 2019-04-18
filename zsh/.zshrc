@@ -6,11 +6,11 @@
 #  / /\__ \ | | | | | (__
 # /___|___/_| |_|_|  \___|
 
-# --- Scripts --- #
-# add additional programs to PATH
+### Scripts ###
+# -- add additional programs to PATH --
 PATH=$PATH:$HOME/scripts:$HOME/go/bin
 
-# --- Completion --- #
+### Completion ###
 autoload -U compinit
 compinit
 # -- Advanced tab-completion --
@@ -21,16 +21,15 @@ zstyle ':completion:*' menu select
 # -- Correction --
 setopt correctall
 
-# --- History --- #
+### History ###
 HISTFILE=$HOME/.zsh_history		# previously it was zsh.d ( $MYZSHDIR )
 HISTSIZE=3000
 SAVEHIST=$HISTSIZE			# necessary to save history
 setopt hist_ignore_all_dups		# ignore duplicates
 setopt hist_ignore_space		# ignore space
 setopt share_history			# save immediatelly, make history shareable between terminals
-#setopt inc_append_history		# don't use with "share_history"
 
-# --- Keys --- #
+### Keys ###
 # -- ctrl-left and ctrl-right --
 bindkey "\e[1;5D" backward-word
 bindkey "\e[1;5C" forward-word
@@ -44,9 +43,11 @@ bindkey '^R' history-incremental-search-backward
 bindkey '^U' backward-kill-line
 bindkey '^Y' yank
 
-# --- Miscellaneous settings --- #
+### Miscellaneous settings ###
+# -- Additional options --
 setopt autocd				# directory name to change dir
 setopt extendedglob
+unsetopt beep				# do not beep
 use_color=true
 # -- Command Editor --
 autoload -U edit-command-line
@@ -58,32 +59,31 @@ case $TERM in
         precmd () {print -Pn "\e]0;${USER}@${HOST}:${PWD/#$HOME/\~}\a"};;
 esac
 
-# --- Theme --- #
+### Theme ###
 # -- Prompt Init --
 autoload -U promptinit
 promptinit
-#prompt gentoo				# use when you do not have your own prompt theme
 # -- git prompt --
 setopt PROMPT_SUBST
 . $MYZSHDIR/git-prompt.sh
-# -- source themes --
+# -- set themes --
 if [[ -z $DISPLAY ]]; then
     . "$MYZSHDIR/tty.zsh-theme"       	# theme in tty
 else
     . "$MYZSHDIR/emu.zsh-theme"      	# theme in emulators
 fi
 
-# --- Aliases --- #
+### Aliases ###
 . $MYZSHDIR/aliases
 
-# --- Plugins --- #
+### Plugins ###
 # -- zsh-autosuggestions --
 . $MYZSHDIR/zsh-autosuggestions.zsh
 # -- syntax coloring --
 . $MYZSHDIR/highlighting/zsh-syntax-highlighting.zsh
 
-# --- some fun stuff --- #
+### some fun stuff ###
 # -- check the characte's unicode encoding --
 codepoints () { printf 'U+%04x\n' ${@/#/\'} ; }
-# -- ls after changing dir --
+# -- ls after changing directory --
 chpwd() ls
