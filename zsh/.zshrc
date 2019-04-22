@@ -84,7 +84,5 @@ fi
 . $MYZSHDIR/highlighting/zsh-syntax-highlighting.zsh
 
 ### some fun stuff ###
-# -- check the characte's unicode encoding --
-codepoints () { printf 'U+%04x\n' ${@/#/\'} ; }
 # -- ls after changing directory --
 chpwd() ls
