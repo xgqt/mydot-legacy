@@ -33,8 +33,8 @@ export HISTCONTROL="$HISTCONTROL erasedups:ignoreboth"
 shopt -s histappend
 
 ### Aliases ###
-if [[ -e $HOME/zsh.d/aliases ]]; then
-    . $HOME/zsh.d/aliases
+if [[ -e $HOME/.zsh.d/aliases ]]; then
+    . $HOME/.zsh.d/aliases
 fi
 
 ### auto-change directory ###

@@ -35,7 +35,6 @@ alias fgrep='fgrep --colour=auto'
 alias mtr='mtr --show-ips --curses'
 alias seeo='sudo netstat -tulpn'
 alias seen='sudo arp-scan --interface=eno1 --localnet'            	# show connected net devices
-
 ### Portage ###
 # -- logs --
 alias F='tail -f /var/log/emerge-fetch.log'
@@ -46,7 +45,22 @@ alias Read='sudo eselect news read'                               	# use all or 
 # -- emerge --
 alias pep='sudo emerge -av'                                             # portage emerge package
 alias chu='sudo emerge -avNUD @world'                                   # after changing USE
-alias ewup='sudo eix-sync && sudo eix-remote update && sudo emerge -avuND @world' 		        # world update using eix to sync
+epull ()
+{
+    sudo eix-sync
+    sudo eix-remote update
+}
+epurge ()
+{
+    sudo emerge -avc
+    sudo eclean-dist --deep
+}
+ewup ()
+{
+    epull
+    sudo emerge -avuD --with-bdeps=y @world
+    epurge
+}
 
 ### Other Package Managers ###
 # -- Flatpak --
@@ -75,15 +89,17 @@ alias so-zrc='source ~/.zshrc'						# source zshrc
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 
 ### youtube-dl ###
-alias ytd-mp3='youtube-dl -i --extract-audio --audio-format mp3 -o "%(playlist_index)s - %(title)s.%(ext)s"'         # for mp3
-alias ytd-webm='youtube-dl -i --merge-output-format webm -o "%(title)s.%(ext)s"'                # video as a webm
-alias ytd-vid='youtube-dl -i -o "%(title)s.%(ext)s"'                                            # video as any format
-alias ytd-sub-pl='youtube-dl -i --write-srt --sub-lang pl -o "%(title)s.%(ext)s"'               # video with polish subtitles
-alias ytd-sub-en='youtube-dl -i --write-srt --sub-lang en -o "%(title)s.%(ext)s"'               # video with english subtitles
+alias ytd-mp3='youtube-dl -i --extract-audio --audio-format mp3 -o "%(playlist_index)s - %(title)s.%(ext)s"'	# for mp3
+alias ytd-webm='youtube-dl -i --merge-output-format webm -o "%(title)s.%(ext)s"'				# video as a webm
+alias ytd-vid='youtube-dl -i -o "%(title)s.%(ext)s"'                                            		# video as any format
+alias ytd-sub-pl='youtube-dl -i --write-srt --sub-lang pl -o "%(title)s.%(ext)s"'               		# video with polish subtitles
+alias ytd-sub-en='youtube-dl -i --write-srt --sub-lang en -o "%(title)s.%(ext)s"'               		# video with english subtitles
 
 ### other fun stuff ###
 # -- weather --
 alias wttr='curl "http://wttr.in/?0?q"'
+# -- check the characte's unicode encoding --
+codepoints () { printf 'U+%04x\n' ${@/#/\'} ; }
 # -- archive extractor --
 extractor ()
 {
