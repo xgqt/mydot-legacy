@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<JWM>
+  
+  <!-- Start a program. -->
+  <StartupCommand>compton -b &amp;</StartupCommand>
+  <StartupCommand>conky -p 3 -c /home/kh/conky10/conkyrc-gentoo-nvidia &amp;</StartupCommand>
+  
+</JWM>
