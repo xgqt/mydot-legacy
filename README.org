@@ -35,7 +35,8 @@ because of this this repo contains a lot of gentoo specyfic aliases and tools.
     example: zsh
     - =stow -vD zsh=
 ** JWM
-For menu to work run [[https://github.com/chiku/mjwm][mjwm]]
+- For menu to work run [[https://github.com/chiku/mjwm][mjwm.]]
+- If you would start conky with configuration file that is not in your home directory instead link that configuration file to ~/.conkyrc
 * What is in Here
 - =bash= -	 bash shell configuration
 - =compton= - 	 compton compositor configuration
