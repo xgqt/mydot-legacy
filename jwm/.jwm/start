@@ -5,5 +5,6 @@
   <StartupCommand>xset b off &amp;</StartupCommand>
   <StartupCommand>compton -b &amp;</StartupCommand>
   <StartupCommand>conky -p 3 &amp;</StartupCommand>
+  <StartupCommand>nm-applet &amp;</StartupCommand>
   
 </JWM>

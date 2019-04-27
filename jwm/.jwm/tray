@@ -25,7 +25,7 @@
 
     <Spacer width="5"/>
     
-    <Clock format="%H:%M"></Clock>
+    <Clock format="%b %d %H:%M"></Clock>
 
     <Spacer width="3"/>
 
