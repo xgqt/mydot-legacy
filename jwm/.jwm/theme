@@ -3,13 +3,19 @@
   
   <!-- Find icons in these paths -->
   <IconPath>
-    /usr/share/icons/Adwaita/32x32/apps
+    /usr/share/icons/Adwaita/16x16/apps
   </IconPath>
   <IconPath>
     /usr/share/icons/Adwaita/24x24/actions
   </IconPath>
   <IconPath>
     /usr/share/icons/hicolor/16x16/apps
+  </IconPath>
+  <IconPath>
+    /usr/share/icons/hicolor/32x32/apps
+  </IconPath>
+  <IconPath>
+    /usr/share/icons/hicolor/48x48/apps
   </IconPath>
 
   <!-- Visual Style Window. -->

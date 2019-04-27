@@ -12,11 +12,11 @@
 
       <Separator/>
 
-      <Program icon="lock.png" label="Lock">
+      <Program icon="system-lock-screen.png" label="Lock">
 	xscreensaver-command -lock
       </Program>
-      <Restart label="Restart" icon="restart.png"/>
-      <Exit label="Exit" confirm="true" icon="quit.png"/>
+      <Restart label="Restart" icon="system-reboot.png"/>
+      <Exit label="Exit" confirm="true" icon="application-exit.png"/>
     
   </RootMenu>
   
