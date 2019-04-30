@@ -171,9 +171,6 @@
 #+END_SRC
 *** HTML Completion
 #+BEGIN_SRC emacs-lisp
-  ;; Editing css and js files using html-mode
-  (add-to-list 'auto-mode-alist '("\\.css$" . html-mode))
-  (add-to-list 'auto-mode-alist '("\\.cfm$" . html-mode))
   ;; Highlighting
   (use-package htmlize
     :ensure t)
