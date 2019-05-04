@@ -222,17 +222,16 @@
   (use-package rainbow-mode
     :ensure t
     :init
-     (add-hook 'prog-mode-hook 'rainbow-mode))
+    (add-hook 'prog-mode-hook 'rainbow-mode))
 #+END_SRC
 ** Rainbow delimeters
 #+BEGIN_SRC emacs-lisp
   ;; Colored delimeters
-    (use-package rainbow-delimiters
-      :ensure t
-      :init
-      ;;;(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-      (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-      )
+  (use-package rainbow-delimiters
+    :ensure t
+    :init
+    (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+    )
 #+END_SRC
 ** Avy
 #+BEGIN_SRC emacs-lisp
@@ -242,7 +241,7 @@
   (use-package avy
     :ensure t
     :bind
-      ("M-s" . avy-goto-char))
+    ("M-s" . avy-goto-char))
 #+END_SRC
 ** Beacon mode
 #+BEGIN_SRC emacs-lisp
@@ -250,7 +249,7 @@
   (use-package beacon
     :ensure t
     :config
-      (beacon-mode 1))
+    (beacon-mode 1))
 #+END_SRC
 ** Projectile
 #+BEGIN_SRC emacs-lisp
@@ -446,7 +445,6 @@
     ;; list length
     (setq recentf-max-menu-items 20)
     ;; binding
-    ;;(global-set-key "\C-c\ \C-r" 'recentf-open-files)
     (global-set-key (kbd "C-c f") 'recentf-open-files)
 #+END_SRC
 * Startup Customization
@@ -474,5 +472,5 @@
 			  ))
   (add-to-list 'dashboard-items '(agenda) t)
   (setq show-week-agenda-p t)
-     )
+  )
 #+END_SRC
