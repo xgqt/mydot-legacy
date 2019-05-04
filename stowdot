@@ -1,11 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 # -- Checks --
 # --- check for stow ---
-if [[ ! -x /usr/bin/stow ]]; then
+stow --version
+if [ $? != '0' ]; then
     echo "$(tput bold)There is no stow on the sytem! Exiting.$(tput sgr0)"
     exit 1
-fi
+fi 
 
 mydir=$HOME/mydot
 
