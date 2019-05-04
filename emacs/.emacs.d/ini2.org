@@ -315,8 +315,7 @@
   ;; My Org agenda
   (global-set-key "\C-ca" 'org-agenda)
   (setq org-agenda-files (list
-			  "~/Documents/diary/gentoo-linux-diary.org"
-			  "~/Documents/diary/2do.org"
+			  "~/Documents/todo.org"
 			  ))
 #+END_SRC
 * modeline
