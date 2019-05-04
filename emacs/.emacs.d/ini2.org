@@ -282,6 +282,15 @@
     :bind
     ("s-e" . sudo-edit))
 #+END_SRC
+** Dired-Sidebar
+#+BEGIN_SRC emacs-lisp
+  ;; Sidebar for Emacs leveraging Dired 
+  (use-package dired-sidebar
+    :ensure t
+    :commands (dired-sidebar-toggle-sidebar)
+    :bind (("C-x C-n" . dired-sidebar-toggle-sidebar))
+    )
+#+END_SRC
 * Keybinding Help
 **  Which Key
 #+BEGIN_SRC emacs-lisp
