@@ -3,6 +3,9 @@
 # ( */50 * * * * /usr/bin/newsboat -x reload )
 #auto-reload yes
 
+# --- Browser ---
+browser firefox %u
+
 # --- Colors ---
 color listnormal cyan default
 color listfocus black yellow standout bold
