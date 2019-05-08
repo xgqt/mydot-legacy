@@ -35,7 +35,7 @@ alias fgrep='fgrep --colour=auto'
 alias ip='ip -c'
 alias mtr='mtr --show-ips --curses'
 alias seeo='sudo netstat -tulpn'
-alias seen='sudo arp-scan --interface=eno1 --localnet'            	# show connected net devices
+alias seen='sudo arp-scan --localnet'            	# show connected net devices
 ### Portage ###
 # -- logs --
 alias F='tail -f /var/log/emerge-fetch.log'
