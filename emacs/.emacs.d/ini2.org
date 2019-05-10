@@ -171,26 +171,35 @@
 #+END_SRC
 *** HTML Completion
 #+BEGIN_SRC emacs-lisp
-  ;; Highlighting
-  (use-package htmlize
-    :ensure t)
-  ;; Make emacs always close html tags
-  (defun my-sgml-insert-gt ()
-    "Insert a `>' character and call `my-sgml-close-tag-if-necessary', leaving point where it is."
-    (interactive)
-    (insert ">")
-    (save-excursion (my-sgml-close-tag-if-necessary)))
-  ;;;
-  (defun my-sgml-close-tag-if-necessary ()
-    "Call sgml-close-tag if the tag immediately before point is an opening tag that is not followed by a matching closing tag."
-    (when (looking-back "<\\s-*\\([^</> \t\r\n]+\\)[^</>]*>")
-      (let ((tag (match-string 1)))
-	(unless (and (not (sgml-unclosed-tag-p tag))
-	   (looking-at (concat "\\s-*<\\s-*/\\s-*" tag "\\s-*>")))
-	  (sgml-close-tag)))))
-  ;;;
-  (eval-after-load "sgml-mode"
-    '(define-key sgml-mode-map ">" 'my-sgml-insert-gt))
+  ;; Enable Web Mode
+  (use-package web-mode
+    :ensure t
+    :mode
+    (
+     ("\\.phtml\\'" . web-mode)
+     ("\\.tpl\\.php\\'" . web-mode)
+     ("\\.blade\\.php\\'" . web-mode)
+     ("\\.jsp\\'" . web-mode)
+     ("\\.as[cp]x\\'" . web-mode)
+     ("\\.erb\\'" . web-mode)
+     ("\\.html?\\'" . web-mode)
+     ("\\.ejs\\'" . web-mode)
+     ("\\.php\\'" . web-mode)
+     ("\\.mustache\\'" . web-mode)
+     ("/\\(views\\|html\\|theme\\|templates\\)/.*\\.php\\'" . web-mode)
+     )
+    :init
+    (setq web-mode-markup-indent-offset 2)
+    (setq web-mode-attr-indent-offset 2)
+    (setq web-mode-attr-value-indent-offset 2)
+    (setq web-mode-code-indent-offset 2)
+    (setq web-mode-css-indent-offset 2)
+    (setq web-mode-code-indent-offset 2)
+    (setq web-mode-enable-auto-closing t)
+    (setq web-mode-enable-auto-pairing t)
+    (setq web-mode-enable-comment-keywords t)
+    (setq web-mode-enable-current-element-highlight t)
+    )
 #+END_SRC
 *** Auto-Complete
 #+BEGIN_SRC emacs-lisp
@@ -343,14 +352,14 @@
   (use-package diminish
     :ensure t
     :init
-    (diminish 'company-mode)
     (diminish 'beacon-mode)
     (diminish 'which-key-mode)
     (diminish 'rainbow-mode)
     (diminish 'eldoc-mode)
     (diminish 'auto-complete-mode)
     (diminish 'flycheck-mode)
-    (diminish 'abbrev-mode))
+    (diminish 'abbrev-mode)
+    )
 #+END_SRC
 ** dmenu
 #+BEGIN_SRC emacs-lisp
