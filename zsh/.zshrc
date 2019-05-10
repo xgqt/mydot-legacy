@@ -82,6 +82,7 @@ fi
 . $MYZSHDIR/zsh-autosuggestions.zsh
 # -- syntax coloring --
 . $MYZSHDIR/highlighting/zsh-syntax-highlighting.zsh
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6'
 
 ### some fun stuff ###
 # -- ls after changing directory --
