@@ -3,7 +3,7 @@ if [ -z $1 ] || [ -z $2 ] || [ -z $3 ]
 then
     echo "ERROR: Missing variables!
 usage: repoadd <package_category> <package_name> <ebuild>
-example: repoadd app-dicts artha ~larry/artha-1.0.2.ebuild"
+example: repoadd app-dicts artha ~/artha-1.0.2.ebuild"
     exit 1
 else
     sudo mkdir -p /usr/local/portage/$1/$2
