@@ -10,6 +10,7 @@
 # user is already defined
 host="$(hostname)"
 os='Gentoo Linux'
+cpu="$(uname -p)"
 kernel="$(uname -sr)"
 uptime="$(uptime -p | sed 's/up //')"
 world="$(cat /var/lib/portage/world | wc -l)"
@@ -52,8 +53,9 @@ c1="${reset}${magenta}"		# second color
 
 # OUTPUT
 cat <<EOF
-${c0}     .-----.      ${nc}${USER}${ic}@${nc}${host}${reset}
-${c0}   .\`    _  \`.    ${lc}OS:        ${ic}${os}${reset}
+${c0} 	          ${nc}${USER}${ic}@${nc}${host}${reset}
+${c0}     .-----.      ${lc}OS:        ${ic}${os}${reset}
+${c0}   .\`    _  \`.    ${lc}CPU:       ${ic}${cpu}${reset}
 ${c0}   \`.   (${c1}_)   ${c0}\`.  ${lc}KERNEL:    ${ic}${kernel}${reset}
 ${c0}     \`${c1}.        /  ${lc}UPTIME:    ${ic}${uptime}${reset}
 ${c1}    .\`       .\`   ${lc}PACKAGES:  ${ic}${packages}${reset}
