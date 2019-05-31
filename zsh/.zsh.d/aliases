@@ -18,6 +18,10 @@ alias tree='tree -C'
 alias t='tree -a -L 2'
 alias ls='ls --color=auto'
 alias ll='ls -lah --color=always'
+mkcd ()
+{
+   mkdir $1 && cd $1 
+}
 # -- files --
 alias rm="rm -Iv"							# before removing > 3 files
 alias c='cat'
