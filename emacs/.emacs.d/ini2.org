@@ -65,43 +65,9 @@
   (setq make-backup-files nil)
   ;; backups directory:
   ;;(setq backup-directory-alist '(("" . "~/.emacs.d/backup")))
-#+END_SRC
-** Window Size
-#+BEGIN_SRC emacs-lisp
-  ;;; Should work well with 88 x 36
-  (when window-system
-    (set-frame-size (selected-frame) 88 36))
-#+END_SRC
-** Transparency
-#+BEGIN_SRC emacs-lisp
-  ;; Set transparency
-  (set-frame-parameter (selected-frame) 'alpha '(95 . 80))
-  (add-to-list 'default-frame-alist '(alpha . (95 . 80)))
-  ;;; You can use the following snippet after you’ve set the alpha as above to assign a toggle to “C-c t”
-  (defun toggle-transparency ()
-    (interactive)
-    (let ((alpha (frame-parameter nil 'alpha)))
-       (set-frame-parameter
-       nil 'alpha
-       (if (eql (cond ((numberp alpha) alpha)
-		       ((numberp (cdr alpha)) (cdr alpha))
-		       ;;; Also handle undocumented (<active> <inactive>) form.
-		       ((numberp (cadr alpha)) (cadr alpha)))
-		100)
-	   '(95 . 80) '(100 . 100)))))
-  (global-set-key (kbd "C-c t") 'toggle-transparency)
-#+END_SRC
-** Quitting
-#+BEGIN_SRC emacs-lisp
   ;; Pass "y or n" instead of "yes or no"
   (defalias 'yes-or-no-p 'y-or-n-p)
-#+END_SRC
-** Disable clipboard
-#+BEGIN_SRC emacs-lisp
-  ;;; Commentary:
-  ;;;; There were huge time delays when closing Emacs
-  ;;;; This should solve the problem
-  ;;; Code:
+  ;; Disable clipboard
   (setq x-select-enable-clipboard-manager nil)
 #+END_SRC
 ** Zoom with Scroll
@@ -111,263 +77,22 @@
   ;; Binding - Control & Scroll Down - Decrease
   (global-set-key [C-mouse-5] 'text-scale-decrease)
 #+END_SRC
-** Font
+** Recent Files
 #+BEGIN_SRC emacs-lisp
-  ;; Font settings
-  (set-face-attribute 'default nil
-		      :font "Monospace"
-		      :weight 'normal
-		      :width 'normal
-		      :height 110
-		      )
+  ;; Enable recent file mode
+  (recentf-mode 1)
+  ;; list length
+  (setq recentf-max-menu-items 20)
+  ;; binding
+  (global-set-key (kbd "C-c f") 'recentf-open-files)
 #+END_SRC
-** Theme
-#+BEGIN_SRC emacs-lisp
-  ;; Install spacemacs-theme if not installed
-  (unless (package-installed-p 'spacemacs-theme)
-    (package-refresh-contents)
-    (package-install 'spacemacs-theme))
-    (load-theme 'spacemacs-dark t)
-#+END_SRC
-* File Editing
-** Insert Date
-#+BEGIN_SRC emacs-lisp
-  ;; Insert date in non-Org documents
-  (defun insert-date (prefix)
-      (interactive "P")
-      (let ((format (cond
-		     ((not prefix) "%d.%m.%Y")
-		     ((equal prefix '(4)) "%Y-%m-%d")
-		     ((equal prefix '(16)) "%A, %d. %B %Y")))
-	    (system-time-locale "pl_PL"))
-	(insert (format-time-string format))))
-  ;;; binding
-  (global-set-key (kbd "C-c d") 'insert-date)
-  ;;; Howto:
-  ;;;; ‘C-c d’: 13.04.2004
-  ;;;; ‘C-u C-c d’: 2004-04-13
-  ;;;; ‘C-u C-u C-c d’: Dienstag, 13. April 2004
-#+END_SRC
-** Encoding
-#+BEGIN_SRC emacs-lisp
-  ;; Set encoding to UTF-8
-  (setq locale-coding-system 'utf-8)
-  (set-terminal-coding-system 'utf-8)
-  (set-keyboard-coding-system 'utf-8)
-  (set-selection-coding-system 'utf-8)
-  (prefer-coding-system 'utf-8)
-#+END_SRC
-** Completion
-*** Electric - bracket autocompletion.
-#+BEGIN_SRC emacs-lisp
-  ;; Auto close brackets
-  (setq electric-pair-pairs '(
-			      (?\{ . ?\})
-			      (?\( . ?\))
-			      (?\[ . ?\])
-			      (?\" . ?\")
-			      ))
-  (electric-pair-mode t)
-#+END_SRC
-*** HTML Completion
-#+BEGIN_SRC emacs-lisp
-  ;; Enable Web Mode
-  (use-package web-mode
-    :ensure t
-    :mode
-    (
-     ("\\.phtml\\'" . web-mode)
-     ("\\.tpl\\.php\\'" . web-mode)
-     ("\\.blade\\.php\\'" . web-mode)
-     ("\\.jsp\\'" . web-mode)
-     ("\\.as[cp]x\\'" . web-mode)
-     ("\\.erb\\'" . web-mode)
-     ("\\.html?\\'" . web-mode)
-     ("\\.ejs\\'" . web-mode)
-     ("\\.php\\'" . web-mode)
-     ("\\.mustache\\'" . web-mode)
-     ("/\\(views\\|html\\|theme\\|templates\\)/.*\\.php\\'" . web-mode)
-     )
-    :init
-    (setq web-mode-markup-indent-offset 2)
-    (setq web-mode-attr-indent-offset 2)
-    (setq web-mode-attr-value-indent-offset 2)
-    (setq web-mode-code-indent-offset 2)
-    (setq web-mode-css-indent-offset 2)
-    (setq web-mode-code-indent-offset 2)
-    (setq web-mode-enable-auto-closing t)
-    (setq web-mode-enable-auto-pairing t)
-    (setq web-mode-enable-comment-keywords t)
-    (setq web-mode-enable-current-element-highlight t)
-    )
-#+END_SRC
-*** Auto-Complete
-#+BEGIN_SRC emacs-lisp
-  ;; Auto complete
-  (use-package auto-complete
-      :ensure t
-      :config
-      (ac-config-default))
-#+END_SRC
-** Flycheck
-#+BEGIN_SRC emacs-lisp
-  ;; Auto check
-  (use-package flycheck
-    :ensure t
-    :init
-    (global-flycheck-mode t))
-#+END_SRC
-** Yasnippet
-#+BEGIN_SRC emacs-lisp
-  ;; Code snippets
-  (use-package yasnippet
-    :ensure t
-    :init
-    (yas-global-mode 1))
-#+END_SRC
-** Rainbow color
-#+BEGIN_SRC emacs-lisp
-  ;; Colorize
-  (use-package rainbow-mode
-    :ensure t
-    :init
-    (add-hook 'prog-mode-hook 'rainbow-mode))
-#+END_SRC
-** Rainbow delimeters
-#+BEGIN_SRC emacs-lisp
-  ;; Colored delimeters
-  (use-package rainbow-delimiters
-    :ensure t
-    :init
-    (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-    )
-#+END_SRC
-** Avy
-#+BEGIN_SRC emacs-lisp
-  ;; Easier search inside files
-  ;;; after pressung binded keys, pass a letter,
-  ;;; then pass symbols for the highlighted letter to which you want to go to
-  (use-package avy
-    :ensure t
-    :bind
-    ("M-s" . avy-goto-char))
-#+END_SRC
-** Beacon mode
-#+BEGIN_SRC emacs-lisp
-  ;; Line highlight when switching
-  (use-package beacon
-    :ensure t
-    :config
-    (beacon-mode 1))
-#+END_SRC
-** Projectile
-#+BEGIN_SRC emacs-lisp
-  ;; Project management
-  (use-package projectile
-    :ensure t
-    :init
-    (projectile-mode 1))
-  ;;; binding
-  (global-set-key (kbd "<f5>") 'projectile-compile-project)
-#+END_SRC
-** Magit
-#+BEGIN_SRC emacs-lisp
-  ;; Git management
-  (use-package magit
-  :ensure t
-  :config
-  (setq magit-push-always-verify nil)
-  (setq git-commit-summary-max-length 50)
-  :bind
-  ("M-g" . magit-status))
-#+END_SRC
-** Sudo Edit
-#+BEGIN_SRC emacs-lisp
-  ;; Edit files as root
-  ;;; this changes active user to root
-  (use-package sudo-edit
-    :ensure t
-    :bind
-    ("s-e" . sudo-edit))
-#+END_SRC
-** Dired-Sidebar
-#+BEGIN_SRC emacs-lisp
-  ;; Sidebar for Emacs leveraging Dired 
-  (use-package dired-sidebar
-    :ensure t
-    :commands (dired-sidebar-toggle-sidebar)
-    :bind (("C-x C-n" . dired-sidebar-toggle-sidebar))
-    )
-#+END_SRC
-* Keybinding Help
-**  Which Key
+** Keybinding Help
 #+BEGIN_SRC emacs-lisp
   ;; Key binding hints
   (use-package which-key
     :ensure t
     :init
     (which-key-mode))
-#+END_SRC
-* Org
-** Org Bullets
-#+BEGIN_SRC emacs-lisp
-  ;; Make org look prettier
-  (use-package org-bullets
-    :ensure t
-    :config
-    (add-hook 'org-mode-hook (lambda () (org-bullets-mode))))
-#+END_SRC
-** Same edit window
-#+BEGIN_SRC emacs-lisp
-  ;; With C-c ' replace the .org file with editor
-  (setq org-src-window-setup 'current-window)
-#+END_SRC
-** Wrap words
-#+BEGIN_SRC emacs-lisp
-  ;; Wrapping
-  (setq org-startup-truncated nil)
-#+END_SRC
-** Org Agenda
-#+BEGIN_SRC emacs-lisp
-  ;; My Org agenda
-  (global-set-key "\C-ca" 'org-agenda)
-  (setq org-agenda-files (list
-			  "~/Documents/todo.org"
-			  ))
-#+END_SRC
-* modeline
-** Spaceline
-#+BEGIN_SRC emacs-lisp
-  ;; Mode line
-  (use-package spaceline
-    :ensure t
-    :config
-    (require 'spaceline-config)
-    (setq powerline-default-separator (quote arrow))
-    (spaceline-spacemacs-theme))
-#+END_SRC
-** Diminish
-#+BEGIN_SRC emacs-lisp
-  ;; Get rid of unused modes
-  (use-package diminish
-    :ensure t
-    :init
-    (diminish 'beacon-mode)
-    (diminish 'which-key-mode)
-    (diminish 'rainbow-mode)
-    (diminish 'eldoc-mode)
-    (diminish 'auto-complete-mode)
-    (diminish 'flycheck-mode)
-    (diminish 'abbrev-mode)
-    )
-#+END_SRC
-** dmenu
-#+BEGIN_SRC emacs-lisp
-  ;; Dmenu
-  (use-package dmenu
-     :ensure t
-     :bind
-     ("s-SPC" . 'dmenu))
 #+END_SRC
 * Buffers & Windows
 ** Ibuffer
@@ -446,15 +171,269 @@
     (other-window 1))
   (global-set-key (kbd "C-x 3") 'split-and-follow-vertically)
 #+END_SRC
-* Recent Files
-** Recentf-mode
+* Look
+** Window Size
 #+BEGIN_SRC emacs-lisp
-    ;; Enable recent file mode
-    (recentf-mode 1)
-    ;; list length
-    (setq recentf-max-menu-items 20)
-    ;; binding
-    (global-set-key (kbd "C-c f") 'recentf-open-files)
+  ;;; Should work well with 88 x 36
+  (when window-system
+    (set-frame-size (selected-frame) 88 36))
+#+END_SRC
+** Transparency
+#+BEGIN_SRC emacs-lisp
+  ;; Set transparency
+  (set-frame-parameter (selected-frame) 'alpha '(95 . 80))
+  (add-to-list 'default-frame-alist '(alpha . (95 . 80)))
+  ;;; You can use the following snippet after you’ve set the alpha as above to assign a toggle to “C-c t”
+  (defun toggle-transparency ()
+    (interactive)
+    (let ((alpha (frame-parameter nil 'alpha)))
+       (set-frame-parameter
+       nil 'alpha
+       (if (eql (cond ((numberp alpha) alpha)
+		       ((numberp (cdr alpha)) (cdr alpha))
+		       ;;; Also handle undocumented (<active> <inactive>) form.
+		       ((numberp (cadr alpha)) (cadr alpha)))
+		100)
+	   '(95 . 80) '(100 . 100)))))
+  (global-set-key (kbd "C-c t") 'toggle-transparency)
+#+END_SRC
+** Font
+#+BEGIN_SRC emacs-lisp
+  ;; Font settings
+  (set-face-attribute 'default nil
+		      :font "Monospace"
+		      :weight 'normal
+		      :width 'normal
+		      :height 110
+		      )
+#+END_SRC
+** Theme
+#+BEGIN_SRC emacs-lisp
+  ;; Install spacemacs-theme if not installed
+  (unless (package-installed-p 'spacemacs-theme)
+    (package-refresh-contents)
+    (package-install 'spacemacs-theme))
+  (load-theme 'spacemacs-dark t)
+#+END_SRC
+** Spaceline
+#+BEGIN_SRC emacs-lisp
+  ;; Mode line
+  (use-package spaceline
+    :ensure t
+    :config
+    (require 'spaceline-config)
+    (setq powerline-default-separator (quote arrow))
+    (spaceline-spacemacs-theme))
+#+END_SRC
+** Diminish
+#+BEGIN_SRC emacs-lisp
+  ;; Get rid of unused modes
+  (use-package diminish
+    :ensure t
+    :init
+    (diminish 'beacon-mode)
+    (diminish 'which-key-mode)
+    (diminish 'rainbow-mode)
+    (diminish 'eldoc-mode)
+    (diminish 'auto-complete-mode)
+    (diminish 'flycheck-mode)
+    (diminish 'abbrev-mode)
+    )
+#+END_SRC
+* File Editing
+** Insert Date
+#+BEGIN_SRC emacs-lisp
+  ;; Insert date in non-Org documents
+  (defun insert-date (prefix)
+      (interactive "P")
+      (let ((format (cond
+		     ((not prefix) "%d.%m.%Y")
+		     ((equal prefix '(4)) "%Y-%m-%d")
+		     ((equal prefix '(16)) "%A, %d. %B %Y")))
+	    (system-time-locale "pl_PL"))
+	(insert (format-time-string format))))
+  ;;; binding
+  (global-set-key (kbd "C-c d") 'insert-date)
+  ;;; Howto:
+  ;;;; ‘C-c d’: 13.04.2004
+  ;;;; ‘C-u C-c d’: 2004-04-13
+  ;;;; ‘C-u C-u C-c d’: Dienstag, 13. April 2004
+#+END_SRC
+** Encoding
+#+BEGIN_SRC emacs-lisp
+  ;; Set encoding to UTF-8
+  (setq locale-coding-system 'utf-8)
+  (set-terminal-coding-system 'utf-8)
+  (set-keyboard-coding-system 'utf-8)
+  (set-selection-coding-system 'utf-8)
+  (prefer-coding-system 'utf-8)
+#+END_SRC
+** Flycheck
+#+BEGIN_SRC emacs-lisp
+  ;; Auto check
+  (use-package flycheck
+    :ensure t
+    :init
+    (global-flycheck-mode t))
+#+END_SRC
+** Yasnippet
+#+BEGIN_SRC emacs-lisp
+  ;; Code snippets
+  (use-package yasnippet
+    :ensure t
+    :init
+    (yas-global-mode 1))
+#+END_SRC
+** Rainbow color
+#+BEGIN_SRC emacs-lisp
+  ;; Colorize
+  (use-package rainbow-mode
+    :ensure t
+    :init
+    (add-hook 'prog-mode-hook 'rainbow-mode))
+#+END_SRC
+** Rainbow delimeters
+#+BEGIN_SRC emacs-lisp
+  ;; Colored delimeters
+  (use-package rainbow-delimiters
+    :ensure t
+    :init
+    (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+#+END_SRC
+** Avy
+#+BEGIN_SRC emacs-lisp
+  ;; Easier search inside files
+  ;;; after pressung binded keys, pass a letter,
+  ;;; then pass symbols for the highlighted letter to which you want to go to
+  (use-package avy
+    :ensure t
+    :bind
+    ("M-s" . avy-goto-char))
+#+END_SRC
+** Beacon mode
+#+BEGIN_SRC emacs-lisp
+  ;; Line highlight when switching
+  (use-package beacon
+    :ensure t
+    :config
+    (beacon-mode 1))
+#+END_SRC
+** Projectile
+#+BEGIN_SRC emacs-lisp
+  ;; Project management
+  (use-package projectile
+    :ensure t
+    :init
+    (projectile-mode 1))
+  ;;; binding
+  (global-set-key (kbd "<f5>") 'projectile-compile-project)
+#+END_SRC
+** Magit
+#+BEGIN_SRC emacs-lisp
+  ;; Git management
+  (use-package magit
+  :ensure t
+  :config
+  (setq magit-push-always-verify nil)
+  (setq git-commit-summary-max-length 50)
+  :bind
+  ("M-g" . magit-status))
+#+END_SRC
+** Sudo Edit
+#+BEGIN_SRC emacs-lisp
+  ;; Edit files as root
+  ;;; this changes active user to root
+  (use-package sudo-edit
+    :ensure t
+    :bind
+    ("s-e" . sudo-edit))
+#+END_SRC
+** Dired-Sidebar
+#+BEGIN_SRC emacs-lisp
+  ;; Sidebar for Emacs leveraging Dired 
+  (use-package dired-sidebar
+    :ensure t
+    :commands (dired-sidebar-toggle-sidebar)
+    :bind (("C-x C-n" . dired-sidebar-toggle-sidebar)))
+#+END_SRC
+* Completion
+** Electric - bracket autocompletion.
+#+BEGIN_SRC emacs-lisp
+  ;; Auto close brackets
+  (setq electric-pair-pairs '(
+			      (?\{ . ?\})
+			      (?\( . ?\))
+			      (?\[ . ?\])
+			      (?\" . ?\")
+			      ))
+  (electric-pair-mode t)
+#+END_SRC
+** HTML Completion
+#+BEGIN_SRC emacs-lisp
+  ;; Enable Web Mode
+  (use-package web-mode
+    :ensure t
+    :mode
+    (
+     ("\\.phtml\\'" . web-mode)
+     ("\\.tpl\\.php\\'" . web-mode)
+     ("\\.blade\\.php\\'" . web-mode)
+     ("\\.jsp\\'" . web-mode)
+     ("\\.as[cp]x\\'" . web-mode)
+     ("\\.erb\\'" . web-mode)
+     ("\\.html?\\'" . web-mode)
+     ("\\.ejs\\'" . web-mode)
+     ("\\.php\\'" . web-mode)
+     ("\\.mustache\\'" . web-mode)
+     ("/\\(views\\|html\\|theme\\|templates\\)/.*\\.php\\'" . web-mode)
+     )
+    :init
+    (setq web-mode-markup-indent-offset 2)
+    (setq web-mode-attr-indent-offset 2)
+    (setq web-mode-attr-value-indent-offset 2)
+    (setq web-mode-code-indent-offset 2)
+    (setq web-mode-css-indent-offset 2)
+    (setq web-mode-code-indent-offset 2)
+    (setq web-mode-enable-auto-closing t)
+    (setq web-mode-enable-auto-pairing t)
+    (setq web-mode-enable-comment-keywords t)
+    (setq web-mode-enable-current-element-highlight t)
+    )
+#+END_SRC
+** Auto-Complete
+#+BEGIN_SRC emacs-lisp
+  ;; Auto complete
+  (use-package auto-complete
+      :ensure t
+      :config
+      (ac-config-default))
+#+END_SRC
+* Org
+** Org Bullets
+#+BEGIN_SRC emacs-lisp
+  ;; Make org look prettier
+  (use-package org-bullets
+    :ensure t
+    :config
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode))))
+#+END_SRC
+** Same edit window
+#+BEGIN_SRC emacs-lisp
+  ;; With C-c ' replace the .org file with editor
+  (setq org-src-window-setup 'current-window)
+#+END_SRC
+** Wrap words
+#+BEGIN_SRC emacs-lisp
+  ;; Wrapping
+  (setq org-startup-truncated nil)
+#+END_SRC
+** Org Agenda
+#+BEGIN_SRC emacs-lisp
+  ;; My Org agenda
+  (global-set-key "\C-ca" 'org-agenda)
+  (setq org-agenda-files (list
+			  "~/Documents/todo.org"
+			  ))
 #+END_SRC
 * Startup Customization
 ** Startup screen settings
