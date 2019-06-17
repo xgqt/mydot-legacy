@@ -10,8 +10,6 @@ Worked on this since my Gentoo's first installation,
 because of this this repo contains a lot of gentoo specyfic aliases and tools.
 * Legal Disclaimer
 ** what I did not write:
-- some scripts where the author is mentioned
-- compton config - not mine, but modified
 - zsh plugins ([[https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh][git-prompt.sh]], [[https://github.com/zsh-users/zsh-syntax-highlighting][zsh-syntax-highlighting]] & [[https://github.com/zsh-users/zsh-autosuggestions][zsh-autosuggestions]])
 * Howto
 ** Installaton
