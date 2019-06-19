@@ -6,11 +6,14 @@
 #  / /\__ \ | | |  __/ | | \ V / 
 # /___|___/_| |_|\___|_| |_|\_/  
 
-### setting the path ###
+### Path to .zsh.d ###
 # !!!!! WARNING !!!!!
-# this is important for
+# Following is important for
 # themes, highlighting and suggestions
-MYZSHDIR="$HOME/.zsh.d"
+export MYZSHDIR="$HOME/.zsh.d"
 
 ### File Editor ###
-EDITOR=vim
+export EDITOR=vim
+
+### GO path ###
+export GOPATH=$HOME/go

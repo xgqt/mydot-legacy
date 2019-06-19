@@ -8,12 +8,12 @@
 #              |___/        
 
 ### MYZSHDIR Warning ###
-if [[ ! -d $MYZSHDIR ]]; then echo "Warning! no $MYZSHDIR found!"; fi
+if [ ! -d $MYZSHDIR ]; then echo "!!!Warning!!! No $MYZSHDIR found!!!"; fi
 
 ### Warning message if a theme isn't set ###
 if [[ ! -e $MYZSHDIR/tty.zsh-theme || ! -e $MYZSHDIR/emu.zsh-theme ]]; then
     echo "Link one of themes in $MYZSHDIR/themes to $MYZSHDIR/tty.zsh-theme and one to $MYZSHDIR/emu.zsh-theme"
-# -- run script to choose a theme --
+# run script to choose a theme
     $MYZSHDIR/choose-theme.sh
     source ~/.zshrc
 fi

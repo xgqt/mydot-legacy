@@ -24,3 +24,5 @@
 	set incsearch
 " copy to system clipboard
 	set clipboard=unnamedplus
+" custom bindings
+	nmap q :q<CR>

@@ -1,16 +1,15 @@
 #!/bin/sh
-MYZSHDIR="$HOME/.zsh.d"
-themedir=$MYZSHDIR/themes
 
+if [ -z $MYZSHDIR ]; then echo "No MYZSHDIR set, exiting..."; exit 1 ; fi
+themedir=$MYZSHDIR/themes
 themes=$(ls $themedir)
 
 ls $themedir | nl
-echo "choose a tty theme"
-read tn1
-theme1=$(echo $themes | cut -d" " -f$(echo $tn1))
-echo "choose a emulator theme"
-read tn2
-theme2=$(echo $themes | cut -d" " -f$(echo $tn2))
 
-ln -sf $themedir/$theme1 $MYZSHDIR/tty.zsh-theme
-ln -sf $themedir/$theme2 $MYZSHDIR/emu.zsh-theme
+echo "choose a tty theme"
+read tty_zsh_theme
+echo "choose a emulator theme"
+read emu_zsh_tmeme
+
+ln -sf $themedir/$(echo $themes | cut -d" " -f$tty_zsh_theme) $MYZSHDIR/tty.zsh-theme
+ln -sf $themedir/$(echo $themes | cut -d" " -f$emu_zsh_tmeme) $MYZSHDIR/emu.zsh-theme
